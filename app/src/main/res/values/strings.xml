@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Blumenau Social</string>
+    <string name="title_institutions">Instituições</string>
+    <string name="title_match">Match</string>
+    <string name="title_about">Sobre</string>
+    <string name="responsible">Responsável: %s</string>
+    <string name="donations">Doações</string>
+    <string name="volunteers">Voluntários</string>
+    <string name="about">Sobre</string>
+    <string name="filter_institutions_or_donations">Filtrar instituições ou doacões..</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_institutions"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_institutions" />
+
+    <item
+        android:id="@+id/navigation_match"
+        android:visible="true"
+        android:icon="@drawable/ic_match"
+        android:title="@string/title_match" />
+
+    <item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/ic_about"
+        android:title="@string/title_about" />
+
+</menu>
