@@ -18,7 +18,7 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 </br> 
 
 <!-- Badges -->
-[![rxJava](https://img.shields.io/static/v1.svg?label=<LABEL>&message=<rxJava>&color=<red>)]
+[![rxJava](https://img.shields.io/static/v1.svg?label=<rxJava>&message=<2>&color=<red>)]
 
 # Dialog screenshots
 
