@@ -1,5 +1,5 @@
 <!-- Library Logo -->
-<img src="http://www.blumenausocial.org?raw=true" align="left" hspace="1" vspace="1">
+<img src="http://www.blumenausocial.org/imagens/logo_blumenau_social.png?raw=true" align="left" hspace="1" vspace="1">
 
 <!-- Visit me on google play -->
 <a href='https://play.google.com/store/apps/details?id=Peter+Richard+Carlim' target='_blank' align="right"><img align="right" height='36' src='https://s20.postimg.org/muzx3w4jh/google_play_badge.png' alt='Get it on Google Play' /></a>
