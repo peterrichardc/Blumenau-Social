@@ -38,3 +38,8 @@ allprojects {
 <a href="mailto:peter.richardcarlim.com" target="_blank" >
   <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x.png" alt="E-mail" witdh="44" height="44" hspace="10">
 </a>
+
+<a href="http://linkedin.com/in/peter-richard-carlim" target="_blank" >
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" alt="E-mail" witdh="44" height="44" hspace="10">
+</a>
+
