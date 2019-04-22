@@ -1,9 +1,9 @@
 <!-- Library Logo -->
-<img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+<img src="http://www.blumenausocial.org?raw=true" align="left" hspace="1" vspace="1">
 
 <!-- Visit me on google play -->
-<a href='https://play.google.com/store/apps/details?id=com.vansuita.pickimage.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank' align="right"><img align="right" height='36' src='https://s20.postimg.org/muzx3w4jh/google_play_badge.png' alt='Get it on Google Play' /></a>
-# PickImage
+<a href='https://play.google.com/store/apps/details?id=Peter+Richard+Carlim' target='_blank' align="right"><img align="right" height='36' src='https://s20.postimg.org/muzx3w4jh/google_play_badge.png' alt='Get it on Google Play' /></a>
+# Blumenau Social
 
 
 Blumenau Social is a non-profit organization focused on developing the third sector of our city. The application unites information of associations and non-profit entities, unrelated to public administration, that provide some kind of effective aid to the population of Blumenau. Also included are service and volunteer groups.
