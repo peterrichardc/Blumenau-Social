@@ -13,7 +13,7 @@ Blumenau Social is a non-profit organization focused on developing the third sec
 
 Through Blumenau Social, the population can seek ways to contribute to the development of organizations and projects, through donations, specific actions, volunteering to the causes, among other forms of help.
 </br> 
-
+</br> 
 # Blumenau Social use the following technologies to work:
 
 <!-- Badges -->
