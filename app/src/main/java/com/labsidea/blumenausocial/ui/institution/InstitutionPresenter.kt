@@ -79,7 +79,7 @@ class InstitutionPresenter : InstitutionContract.Presenter {
                 .map { t -> // Save into database.
                     if (t.institutions!!.isNotEmpty()) {
                         realm.beginTransaction()
-                        realm.insertOrUpdate(t.institutions!!.toMutableList())
+                        realm.insertOrUpdate(t.institutions.toMutableList())
                         realm.commitTransaction()
                     }
 
