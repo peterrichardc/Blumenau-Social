@@ -37,9 +37,9 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 </br> 
 </br> 
 
-# Setup - coming soon
+# Application Functions
 
-#### Step #1. - coming soon
+#### #1 - See all the Social Organizations easily and fastly.
 ```gradle
 allprojects {
     repositories {
