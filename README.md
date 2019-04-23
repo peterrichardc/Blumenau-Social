@@ -32,7 +32,8 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 # Architecture
 
 <img src="https://static-steelkiwi-dev.s3.amazonaws.com/media/filer_public/17/18/171889be-5f72-46d1-afb8-6a838d7f243a/0555ed9d-2eef-42a8-886e-c5a233a26c11.png?raw=true" align="left" hspace="1" vspace="1">
-
+</br> 
+</br> 
 
 # Setup - coming soon
 
