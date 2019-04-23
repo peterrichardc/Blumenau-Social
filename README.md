@@ -12,8 +12,8 @@
 Blumenau Social is a non-profit organization focused on developing the third sector of our city. The application unites information of associations and non-profit entities, unrelated to public administration, that provide some kind of effective aid to the population of Blumenau. Also included are service and volunteer groups.
 
 Through Blumenau Social, the population can seek ways to contribute to the development of organizations and projects, through donations, specific actions, volunteering to the causes, among other forms of help.
-
 </br> 
+
 # Blumenau Social use the following technologies to work:
 
 <!-- Badges -->
