@@ -17,8 +17,18 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 </br> 
 </br> 
 
+Blumenau Social use the following technologies to work:
+
 <!-- Badges -->
 [![rxJava](https://img.shields.io/static/v1.svg?label=rxJava&message=2&color=red)](https://github.com/ReactiveX/RxJava)
+
+[![Dagger](https://img.shields.io/static/v1.svg?label=Dagger&message=2&color=red)](https://github.com/google/dagger)
+
+[![Retrofit](https://img.shields.io/static/v1.svg?label=Retrofit&message=2&color=red)](https://github.com/square/retrofit)
+
+[![Anko](https://img.shields.io/static/v1.svg?label=Anko&message=0.10&color=red)](https://github.com/Kotlin/anko)
+
+[![Kotlin](https://img.shields.io/static/v1.svg?label=Kotlin&message=1.2&color=red)](https://github.com/JetBrains/kotlin)
 
 # Coming soon
 
