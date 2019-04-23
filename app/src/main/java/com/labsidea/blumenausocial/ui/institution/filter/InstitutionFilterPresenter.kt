@@ -45,7 +45,6 @@ class InstitutionFilterPresenter : InstitutionFilterContract.Presenter {
                     createOrganizationAdditionalInformationList(neighborhoods, causes, donations, volunteers)
                 })
                 .subscribe({ model: OrganizationAdditionalInformationList? ->
-
                     view showProgress false
 
                     view.loadDataSuccess(model!!.neighborhoods!!, model.causes!!, model.donations!!, model.volunteers!!)
