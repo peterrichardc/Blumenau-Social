@@ -9,6 +9,7 @@ package com.labsidea.blumenausocial.ui.institution.detail
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerActivityComponent
 import com.labsidea.blumenausocial.di.module.ActivityModule
@@ -55,7 +56,7 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
     }
 
     override fun showErrorMessage(error: String) {
-
+        showProgress(false)
     }
 
     override fun loadDataSuccess(institution: Organization?) {

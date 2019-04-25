@@ -1,38 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:text="Bairros de Blumenau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subtitleTextColor="@android:color/white"
+            app:titleTextColor="@android:color/white">
 
 
-    <Button
+            <ImageButton
+                android:id="@+id/btnClose"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Filtros de pesquisa"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                android:textColor="@android:color/white" />
+
+            <ImageButton
+                android:id="@+id/btnFilter"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
+                android:src="@android:drawable/ic_menu_add" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <ExpandableListView
+        android:id="@+id/expdFilters"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        tools:listitem="@layout/item_header_institutions_filters_adapter">
+
+    </ExpandableListView>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TESTEEEEE" />
-
-
-    <TextView
-        android:text="Areas de atuacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        android:text="Doações"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        android:text="Voluntários"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

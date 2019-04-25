@@ -70,6 +70,7 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
 
     override fun showErrorMessage(error: String) {
         Log.e("Error", error)
+        showProgress(false)
     }
 
     override fun loadDataSuccess(list: List<Organization>) {

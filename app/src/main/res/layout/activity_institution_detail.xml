@@ -25,7 +25,7 @@
                 android:id="@+id/btnClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_gravity="start"
                 android:layout_marginTop="5dp"
                 android:background="@android:drawable/ic_menu_close_clear_cancel"
                 android:focusableInTouchMode="true"
