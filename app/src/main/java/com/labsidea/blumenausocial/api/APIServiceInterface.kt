@@ -20,10 +20,10 @@ import io.reactivex.schedulers.Schedulers
 interface APIServiceInterface{
 
     //@GET("s/uemsdm9xxr5uxyv/institutions.json")
-    @GET("s/uemsdm9xxr5uxyv/institutions.json")
+    @GET("institution")
     fun getInstitutionsList(): Observable<OrganizationList>
 
-    @GET("s/dse0ddxn7ebd910/filters.json")
+    @GET("filter")
     fun getInstitutionsAdditionalInformationList(): Observable<OrganizationAdditionalInformationList>
 /*
     @GET("albums/{id}")
@@ -41,7 +41,7 @@ interface APIServiceInterface{
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(rxAdapter)//RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://dl.dropboxusercontent.com/")
+                    .baseUrl("https://blumenau-social-api.herokuapp.com/")//"https://dl.dropboxusercontent.com/")
                     .build()
 
             return retrofit.create(APIServiceInterface::class.java)

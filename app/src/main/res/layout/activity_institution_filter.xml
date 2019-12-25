@@ -13,7 +13,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             app:subtitleTextColor="@android:color/white"
             app:titleTextColor="@android:color/white">
 
@@ -34,7 +34,6 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="Filtros de pesquisa"
-                android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                 android:textColor="@android:color/white" />
 
@@ -59,7 +58,7 @@
         android:id="@+id/expdFilters"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        android:groupIndicator="@null"
         tools:listitem="@layout/item_header_institutions_filters_adapter">
 
     </ExpandableListView>

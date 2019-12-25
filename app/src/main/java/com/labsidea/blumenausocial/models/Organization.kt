@@ -27,8 +27,9 @@ open class Organization : RealmObject() {
     var volunteer_type: RealmList<Int> = RealmList()
     var donations: RealmList<String> = RealmList()
     var volunteers: String = ""
-    var about: String = ""
+    var about: RealmList<String> = RealmList()
     var scope : String = ""
-    var neighborhood: RealmList<Neighborhood> = RealmList()
+    var neighborhood: Int = 0
+
 
 }

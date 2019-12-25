@@ -6,6 +6,8 @@
 
 package com.labsidea.blumenausocial.ui.institution
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
@@ -21,15 +23,20 @@ import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.fragment_institutions.*
 import javax.inject.Inject
 import android.view.WindowManager
+import com.labsidea.blumenausocial.models.ItemsSelected
 import com.labsidea.blumenausocial.ui.institution.detail.InstitutionDetailActivity
 import com.labsidea.blumenausocial.ui.institution.filter.InstitutionFilterActivity
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.startActivityForResult
 
 
 class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAdapter.InstitutionAdapterEvents{
 
 
     @Inject lateinit var presenter: InstitutionContract.Presenter
+
+    private lateinit var adapter: InstitutionAdapter
+    private var actuallyFilters: List<ItemsSelected> = mutableListOf()
 
     companion object {
         const val TAG: String = "InstitutionsFragment"
@@ -81,8 +88,8 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
 //        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
 
         rvInstitutions!!.layoutManager = LinearLayoutManager(context)
-        val adapter = InstitutionAdapter(context!!, list.toMutableList(), this)
-        rvInstitutions!!.adapter = adapter
+        this.adapter = InstitutionAdapter(context!!, list.toMutableList(), this)
+        rvInstitutions!!.adapter = this.adapter
     }
 
     override fun onClickItem(institution: Organization) {
@@ -101,7 +108,26 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
     private fun initView() {
         presenter.loadAdditionalData(context!!)
 
-        btnFilter.setOnClickListener{ startActivity<InstitutionFilterActivity>()}
+        btnFilter.setOnClickListener{
+            startActivityForResult<InstitutionFilterActivity>(1, "currentFilters" to this.actuallyFilters)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1){
+            if (data != null && data.hasExtra("items_filter")){
+                this.actuallyFilters = data.getParcelableArrayListExtra("items_filter")
+
+                changeAdapter(this.presenter.filterOrganizations(this.actuallyFilters, this.adapter.list))
+            }
+        }
+    }
+
+    private fun changeAdapter(newListToAdapter: List<Organization>){
+        this.adapter.list = newListToAdapter
+        this.adapter.notifyDataSetChanged()
     }
 
 

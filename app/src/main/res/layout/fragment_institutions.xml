@@ -19,7 +19,7 @@
         android:paddingEnd="10dp"
         android:textColorHint="@android:color/darker_gray"
         android:layout_height="100dp"
-        android:background="@color/colorRedApp"/>
+        android:background="@color/colorPrimary"/>
 
 
 

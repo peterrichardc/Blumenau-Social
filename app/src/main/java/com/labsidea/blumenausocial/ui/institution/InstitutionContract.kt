@@ -7,6 +7,7 @@
 package com.labsidea.blumenausocial.ui.institution
 
 import android.content.Context
+import com.labsidea.blumenausocial.models.ItemsSelected
 import com.labsidea.blumenausocial.models.Organization
 import com.labsidea.blumenausocial.ui.base.BaseContract
 
@@ -26,5 +27,7 @@ interface InstitutionContract{
     interface Presenter: BaseContract.Presenter<View> {
         //Load additional data.
         infix fun loadAdditionalData(context: Context)
+
+        fun filterOrganizations(filters: List<ItemsSelected>, listToBeFiltered: List<Organization>): List<Organization>
     }
 }

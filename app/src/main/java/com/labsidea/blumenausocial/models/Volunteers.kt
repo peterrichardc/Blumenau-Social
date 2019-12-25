@@ -13,4 +13,5 @@ open class Volunteers: RealmObject() {
     @PrimaryKey
     var id: Int = 0
     var name: String = ""
+    var image: String = ""
 }

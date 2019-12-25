@@ -8,12 +8,15 @@ package com.labsidea.blumenausocial.ui.institution
 
 import android.content.Context
 import com.labsidea.blumenausocial.api.APIServiceInterface
-import com.labsidea.blumenausocial.models.OrganizationList
+import com.labsidea.blumenausocial.models.*
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
+import io.realm.RealmResults
+import org.reactivestreams.Subscriber
 
 class InstitutionPresenter : InstitutionContract.Presenter {
 
@@ -21,6 +24,8 @@ class InstitutionPresenter : InstitutionContract.Presenter {
     private val api: APIServiceInterface = APIServiceInterface.create()
 
     private lateinit var view: InstitutionContract.View
+
+    var allOrganization: List<Organization> = mutableListOf()
 
     override fun subscribe() {
 
@@ -87,7 +92,8 @@ class InstitutionPresenter : InstitutionContract.Presenter {
                 }
                 .subscribe({ list: OrganizationList? ->
                     view showProgress false
-                    view loadDataSuccess list!!.institutions!!.take(10)
+                    allOrganization = list!!.institutions!!
+                    view loadDataSuccess list.institutions!!
 
                 }, { error ->
                     view showProgress false
@@ -95,6 +101,27 @@ class InstitutionPresenter : InstitutionContract.Presenter {
                 })
 
         subscriptions.add(subscribe)
+    }
+
+    override fun filterOrganizations(filters: List<ItemsSelected>, listToBeFiltered: List<Organization>): List<Organization>{
+        if (filters.isEmpty())
+            return allOrganization
+
+        var matchFilter: Boolean
+        val list = listToBeFiltered.filter { organization ->
+            matchFilter = false
+
+            //Check if filter match with organization.
+            val filterNeighborhood = filters.filter { it.type == FiltersType.NEIGHBORHOODS}.filter { it.id == organization.neighborhood }
+            matchFilter = filterNeighborhood.isNotEmpty()
+
+
+            matchFilter
+
+        }
+
+        return list
+
     }
 
 }

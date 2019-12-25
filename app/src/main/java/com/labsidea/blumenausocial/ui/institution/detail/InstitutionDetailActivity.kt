@@ -9,7 +9,6 @@ package com.labsidea.blumenausocial.ui.institution.detail
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerActivityComponent
 import com.labsidea.blumenausocial.di.module.ActivityModule
@@ -17,7 +16,6 @@ import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.activity_institution_detail.*
 import org.jetbrains.anko.email
 import org.jetbrains.anko.makeCall
-import org.jetbrains.anko.toast
 import java.util.*
 import javax.inject.Inject
 
@@ -62,23 +60,29 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
     override fun loadDataSuccess(institution: Organization?) {
         tvInstitutionName?.text = institution?.title
 
-        tvScope?.text = institution?.scope
+        tvSubTitle?.text = institution?.subtitle
 
         tvAddress?.text = institution?.address
 
         tvPhone?.text = institution?.phone
-        //tvPhone.setOnClickListener { makeCall(institution.phone) }
+        tvPhone?.setOnClickListener {
+            if (institution != null)
+                makeCall(institution.phone)
+        }
 
         tvMail?.text = institution?.mail
-        //tvMail.setOnClickListener { email(institution.mail, institution.title) }
+        tvMail?.setOnClickListener {
+            if (institution != null)
+                email(institution.mail, institution.title)
+        }
 
         tvWorkingHours?.text = institution?.working_hours
 
         tvResponsible?.text = getString(R.string.responsible).format(Locale.getDefault(), institution?.responsible)
 
-        tvAbout?.text = institution?.about
+        tvAbout?.text = institution?.about?.first()
 
-        btnVolunteers?.text = institution?.volunteers
+        tvVolunteers?.text = institution?.volunteers
 
         if (institution?.donations != null) {
             rvDonations.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

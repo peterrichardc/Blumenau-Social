@@ -15,7 +15,7 @@ import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.item_organization.view.*
 
-class InstitutionAdapter(val context: Context, val list: List<Organization>, val events: InstitutionAdapterEvents): RecyclerView.Adapter<InstitutionAdapter.InstitutionAdapterViewHolder>() {
+class InstitutionAdapter(private val context: Context, var list: List<Organization>, private val events: InstitutionAdapterEvents): RecyclerView.Adapter<InstitutionAdapter.InstitutionAdapterViewHolder>() {
 
     interface InstitutionAdapterEvents{
         fun onClickItem(institution: Organization)

@@ -25,7 +25,7 @@
                 android:id="@+id/btnClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:layout_gravity="end"
                 android:layout_marginTop="5dp"
                 android:background="@android:drawable/ic_menu_close_clear_cancel"
                 android:focusableInTouchMode="true"
@@ -36,16 +36,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
                 android:text="Espaço Cultura Vovó Tânia"
                 android:textColor="@android:color/white"
                 android:textSize="25sp" />
 
             <TextView
-                android:id="@+id/tvScope"
+                android:id="@+id/tvSubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
                 android:layout_marginBottom="20dp"
+                android:textStyle="bold"
                 android:text="Região central de Blumenau"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
@@ -59,7 +62,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp">
 
             <LinearLayout
@@ -73,6 +76,7 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:drawableStart="@drawable/ic_address"
                     android:padding="5dp"
                     android:text="Rua Roraima, 59, Casa - Valparaiso - Blumenau / SC" />
@@ -83,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_phone"
                     android:padding="5dp"
+                    android:textStyle="bold"
                     android:text="(47) 3037-3470" />
 
                 <TextView
@@ -91,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_mail"
                     android:padding="5dp"
+                    android:textStyle="bold"
                     android:text="taniacontadores@terra.com.br" />
 
 
@@ -100,15 +106,9 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_phone"
                     android:padding="5dp"
+                    android:textStyle="bold"
                     android:text="Responsável: Tania Maria da Silva" />
 
-                <TextView
-                    android:id="@+id/tvWorkingHours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_phone"
-                    android:padding="5dp"
-                    android:text="Segunda a Sexta, 13h as 17h" />
             </LinearLayout>
 
 
@@ -116,10 +116,43 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/working_hours"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorRedApp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvWorkingHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Segunda a sabado."
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp">
 
             <LinearLayout
@@ -149,48 +182,10 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            app:cardCornerRadius="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/volunteers"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorRedApp"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/btnVolunteers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/shape_rounded_corner"
-                    android:text="Voluntários para cuidar de crianças"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
             android:layout_height="220dp"
             app:cardCornerRadius="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp">
 
             <LinearLayout
@@ -213,6 +208,42 @@
                     android:layout_height="match_parent"
                     android:focusable="false"
                     tools:listitem="@layout/item_donation" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/volunteers"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorRedApp"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/tvVolunteers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Sitio dona lucia precisa de varias coisas bla bla bla bla bla bla bla bla balalalallal mais migue imoissvel esses cara sao foda"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 

@@ -13,4 +13,5 @@ open class Neighborhood : RealmObject() {
     @PrimaryKey
     var id: Int = 0
     var name: String = ""
+    var image: String = ""
 }
