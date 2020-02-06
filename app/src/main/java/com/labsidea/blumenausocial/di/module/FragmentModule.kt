@@ -6,8 +6,8 @@
 
 package com.labsidea.blumenausocial.di.module
 
-import com.labsidea.blumenausocial.ui.institution.InstitutionContract
-import com.labsidea.blumenausocial.ui.institution.InstitutionPresenter
+import com.labsidea.blumenausocial.ui.institution.InstitutionsContract
+import com.labsidea.blumenausocial.ui.institution.InstitutionsPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -21,8 +21,8 @@ class FragmentModule {
     }*/
 
     @Provides
-    fun provideInstitutionPresenter(): InstitutionContract.Presenter {
-        return InstitutionPresenter()
+    fun provideInstitutionPresenter(): InstitutionsContract.Presenter {
+        return InstitutionsPresenter()
     }
 
 

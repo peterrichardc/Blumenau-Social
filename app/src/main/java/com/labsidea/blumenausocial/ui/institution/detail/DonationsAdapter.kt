@@ -14,27 +14,15 @@ import com.labsidea.blumenausocial.R
 import kotlinx.android.synthetic.main.item_donation.view.*
 
 class DonationsAdapter(val list: List<String>): RecyclerView.Adapter<DonationsAdapter.DonationsAdapterViewHolder>() {
-
-
     inner class DonationsAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
         fun bind(title: String){
             itemView.btnVolunteers.text = title
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DonationsAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_donation, parent, false))
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationsAdapterViewHolder {
-        val inflate: LayoutInflater = LayoutInflater.from(parent.context)
-        val view: View = inflate.inflate(R.layout.item_donation, parent, false)
-
-        return DonationsAdapterViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: DonationsAdapterViewHolder, position: Int) {
-        holder.bind(list[position])
-    }
-
+    override fun onBindViewHolder(holder: DonationsAdapterViewHolder, position: Int) = holder.bind(list[position])
 
     override fun getItemCount() = list.size
 }

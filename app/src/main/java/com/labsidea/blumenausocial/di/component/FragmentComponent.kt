@@ -12,9 +12,5 @@ import dagger.Component
 
 @Component(modules = [FragmentModule::class])
 interface FragmentComponent {
-
-   // fun inject(aboutFragment: AboutFragment)
-
     fun inject(listFragment: InstitutionsFragment)
-
 }

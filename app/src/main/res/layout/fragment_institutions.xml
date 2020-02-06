@@ -12,7 +12,6 @@
         android:id="@+id/btnFilter"
         android:layout_width="match_parent"
         android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawableEnd="@android:drawable/ic_menu_close_clear_cancel"
         android:drawablePadding="10dp"
         android:hint="@string/filter_institutions_or_donations"
         android:paddingStart="10dp"

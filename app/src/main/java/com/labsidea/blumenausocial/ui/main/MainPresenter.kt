@@ -9,18 +9,10 @@ package com.labsidea.blumenausocial.ui.main
 import io.reactivex.disposables.CompositeDisposable
 
 class MainPresenter: MainContract.Presenter {
-
-    private val subscriptions = CompositeDisposable()
-
     private lateinit var view: MainContract.View
 
-    override fun subscribe() {
-
-    }
-
-    override fun unsubscribe() {
-        subscriptions.clear()
-    }
+    override fun subscribe() {}
+    override fun unsubscribe() {}
 
     override fun loadData() {
         view.showInstitutionsFragment() // as default
@@ -30,7 +22,7 @@ class MainPresenter: MainContract.Presenter {
         this.view = view
     }
 
-    override fun onClickAboutMenu() {
-        view.showAboutFragment()
-    }
+    override fun onClickInstitutionsMenu() = view.showInstitutionsFragment()
+
+    override fun onClickAboutMenu() = view.showAboutFragment()
 }

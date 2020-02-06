@@ -11,7 +11,7 @@ import com.labsidea.blumenausocial.models.ItemsSelected
 import com.labsidea.blumenausocial.models.Organization
 import com.labsidea.blumenausocial.ui.base.BaseContract
 
-interface InstitutionContract{
+interface InstitutionsContract{
 
     interface View: BaseContract.View {
         //Show the progress bar.
@@ -21,13 +21,16 @@ interface InstitutionContract{
         infix fun showErrorMessage(error: String)
 
         //Show the data loaded in UI.
-        infix fun loadDataSuccess(list: List<Organization>)
+        infix fun loadDataSuccess(adapter: InstitutionsAdapter)
     }
 
     interface Presenter: BaseContract.Presenter<View> {
-        //Load additional data.
-        infix fun loadAdditionalData(context: Context)
 
-        fun filterOrganizations(filters: List<ItemsSelected>, listToBeFiltered: List<Organization>): List<Organization>
+        //Load additional data.
+        fun loadAdditionalData(context: Context, onClickItem: (institution: Organization?) -> Unit)
+
+        fun filterOrganizations(filters: List<ItemsSelected>)
+
+        fun filters(): List<ItemsSelected>
     }
 }

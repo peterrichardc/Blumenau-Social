@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerActivityComponent
 import com.labsidea.blumenausocial.di.module.ActivityModule
+import com.labsidea.blumenausocial.ui.about.AboutFragment
 import com.labsidea.blumenausocial.ui.institution.InstitutionsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -21,12 +22,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     @Inject lateinit var presenter: MainContract.Presenter
 
-
     //Main menu click.
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_institutions -> {
-                presenter.onClickAboutMenu()
+                presenter.onClickInstitutionsMenu()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_match -> {
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_about -> {
+                presenter.onClickAboutMenu()
                 //message.setText(R.string.title_notifications)
                 return@OnNavigationItemSelectedListener true
             }
@@ -65,7 +66,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun showAboutFragment() {
-
+        supportFragmentManager.beginTransaction()
+                .disallowAddToBackStack()
+                .replace(R.id.frmMain, AboutFragment().newInstance(), AboutFragment.TAG)
+                .commit()
     }
 
     override fun showInstitutionsFragment() {

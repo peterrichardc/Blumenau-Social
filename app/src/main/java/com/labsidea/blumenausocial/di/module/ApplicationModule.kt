@@ -11,6 +11,7 @@ import com.labsidea.blumenausocial.BaseApp
 import com.labsidea.blumenausocial.di.scope.PerApplication
 import dagger.Module
 import dagger.Provides
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module

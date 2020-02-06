@@ -14,10 +14,12 @@ import com.labsidea.blumenausocial.models.InstitutionsFilterHeader
 import com.labsidea.blumenausocial.models.ItemAdapter
 import com.labsidea.blumenausocial.models.ItemsSelected
 
-class InstitutionsFiltersAdapter(private val context: Context, private val listHeaders: List<InstitutionsFilterHeader>, private val listItems: HashMap<InstitutionsFilterHeader, List<ItemAdapter>>, private val events: InstitutionsFiltersAdapterEvents?): BaseExpandableListAdapter(){
+class InstitutionsFiltersAdapter(private val context: Context,
+                                 private val listHeaders: List<InstitutionsFilterHeader>,
+                                 private val listItems: HashMap<InstitutionsFilterHeader, List<ItemAdapter>>,
+                                 val listFilters: MutableList<ItemsSelected>,
+                                 private val events: InstitutionsFiltersAdapterEvents?): BaseExpandableListAdapter(){
 
-
-    val itemsSelected = arrayListOf<ItemsSelected>()
 
     interface InstitutionsFiltersAdapterEvents{
         fun onClickExpandOrCollapse(groupPosition: Int)
@@ -52,13 +54,19 @@ class InstitutionsFiltersAdapter(private val context: Context, private val listH
 
         val rvInstitutions = view.findViewById(R.id.rvInstitutions) as RecyclerView
 
-        rvInstitutions.adapter = FilterAdapter(context, getChild(groupPosition, childPosition)!!) { id ->
+        rvInstitutions.adapter = FilterAdapter(context, getChild(groupPosition, childPosition)!!) { item ->
+            //Selected Record or not..
+
             //Find exists in list or not..
-            val add = itemsSelected.none { it.id == id && it.type == getGroup(groupPosition).type }
+            val add = listFilters.none { it.id == item.id && it.type == getGroup(groupPosition).type }
             if (add)
-                itemsSelected.add(ItemsSelected(id, getGroup(groupPosition).type))
+                listFilters.add(ItemsSelected(item.id, getGroup(groupPosition).type))
             else
-                itemsSelected.removeAll{ it.id == id && it.type == getGroup(groupPosition).type }
+                listFilters.removeAll{ it.id == item.id && it.type == getGroup(groupPosition).type }
+
+            //Update item in list of children.
+            val position = getChild(groupPosition, childPosition)!!.indexOf(item)
+            getChild(groupPosition, childPosition)!![position].selected = if (add) 1 else 0
         }
         rvInstitutions.layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
 

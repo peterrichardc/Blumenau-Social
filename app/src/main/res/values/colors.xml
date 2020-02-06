@@ -3,7 +3,11 @@
     <color name="colorPrimary">#2A5E50</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorRedApp">#2A5E50</color>
+    <color name="colorGreenApp">#2A5E50</color>
 
     <color name="colorBlueSelected">#ADD8E6</color>
+    <color name="colorPrimaryAlpha">#662A5E50</color>
+    <color name="colorWhiteLight">#e9e6e2</color>
+    <color name="colorGreenLight">#085e50</color>
+    <color name="colorBlueDark">#00002d</color>
 </resources>

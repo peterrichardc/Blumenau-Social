@@ -39,7 +39,8 @@ class InstitutionFilterActivity: AppCompatActivity(), InstitutionFilterContract.
 
         btnClose.setOnClickListener { finishActivity(arrayListOf()) }
 
-        btnFilter.setOnClickListener { finishActivity(this.adapter.itemsSelected) }
+
+        btnFilter.setOnClickListener { finishActivity(ArrayList(this.adapter.listFilters)) }
     }
 
     private fun injectDependency(){
@@ -114,7 +115,7 @@ class InstitutionFilterActivity: AppCompatActivity(), InstitutionFilterContract.
         }
         listItem.put(listHeader.last(), list4)
 
-        this.adapter = InstitutionsFiltersAdapter(this, listHeader, listItem, this)
+        this.adapter = InstitutionsFiltersAdapter(this, listHeader, listItem, filters,this)
 
 
         expdFilters.setAdapter(this.adapter)

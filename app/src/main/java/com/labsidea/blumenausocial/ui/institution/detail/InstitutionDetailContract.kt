@@ -19,8 +19,10 @@ interface InstitutionDetailContract{
         infix fun showErrorMessage(error: String)
 
         //Show the data loaded in UI.
-        infix fun loadDataSuccess(institution: Organization?)
+        infix fun loadDataSuccess(donationsAdapter: DonationsAdapter)
     }
 
-    interface Presenter: BaseContract.Presenter<View>
+    interface Presenter: BaseContract.Presenter<View>{
+        var institution: Organization?
+    }
 }

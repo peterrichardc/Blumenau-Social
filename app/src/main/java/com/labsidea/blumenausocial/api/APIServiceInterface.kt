@@ -14,25 +14,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import io.reactivex.schedulers.Schedulers
 
-
-
-
 interface APIServiceInterface{
 
-    //@GET("s/uemsdm9xxr5uxyv/institutions.json")
     @GET("institution")
     fun getInstitutionsList(): Observable<OrganizationList>
 
     @GET("filter")
     fun getInstitutionsAdditionalInformationList(): Observable<OrganizationAdditionalInformationList>
-/*
-    @GET("albums/{id}")
-    fun getAlbum(@Path("id") id: Int): Observable<Album>
-
-    @DELETE("albums/{id}")
-    fun deleteUser(@Path("id") id: Int)
-
-*/
 
     companion object Factory {
         fun create(): APIServiceInterface {

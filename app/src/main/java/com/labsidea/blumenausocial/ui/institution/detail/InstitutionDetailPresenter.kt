@@ -7,30 +7,44 @@
 package com.labsidea.blumenausocial.ui.institution.detail
 
 import com.labsidea.blumenausocial.models.Organization
-import io.reactivex.disposables.CompositeDisposable
 import io.realm.Realm
+import java.lang.Exception
 
 class InstitutionDetailPresenter(private val institution_id_selected: Int): InstitutionDetailContract.Presenter{
 
-    private val subscriptions = CompositeDisposable()
-
     private lateinit var view: InstitutionDetailContract.View
 
+    private var currentInstitution: Organization? = Organization()
+
+    override var institution: Organization?
+        get() = this.currentInstitution
+        set(_) {}
+
+    /**
+     * Apply select in Realm Organization Table, and return record that match with id referenced by parameter.
+    */
     override fun loadData() {
-        val realm = Realm.getDefaultInstance()
+        try {
+            view.showProgress(true)
 
-        val institution: Organization? = realm.where(Organization::class.java).equalTo("id", institution_id_selected).findFirst()
+            val realm = Realm.getDefaultInstance()
+            currentInstitution = realm.where(Organization::class.java).equalTo("id", institution_id_selected).findFirst()
+            val donationsAdapter = DonationsAdapter(currentInstitution!!.donations)
 
-        view loadDataSuccess institution
+            view loadDataSuccess donationsAdapter
+            view showProgress false
+        }catch (e: Exception){
+
+            view showProgress false
+
+            if (e.message != null)
+                view showErrorMessage e.message!!
+        }
     }
 
-    override fun subscribe() {
+    override fun subscribe() {}
 
-    }
-
-    override fun unsubscribe() {
-        subscriptions.clear()
-    }
+    override fun unsubscribe() {}
 
     override fun attach(view: InstitutionDetailContract.View) {
         this.view = view

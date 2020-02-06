@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerActivityComponent
 import com.labsidea.blumenausocial.di.module.ActivityModule
-import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.activity_institution_detail.*
 import org.jetbrains.anko.email
 import org.jetbrains.anko.makeCall
@@ -27,15 +26,11 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_institution_detail)
 
         injectDependency()
-
         presenter attach this
-
         presenter.loadData()
-
 
         btnClose.setOnClickListener { finish() }
     }
@@ -50,6 +45,7 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
     }
 
     override fun showProgress(show: Boolean) {
+        //TODO ADICIONAR PROGRESS..
 
     }
 
@@ -57,37 +53,29 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
         showProgress(false)
     }
 
-    override fun loadDataSuccess(institution: Organization?) {
-        tvInstitutionName?.text = institution?.title
+    override fun loadDataSuccess(donationsAdapter: DonationsAdapter) {
+        tvInstitutionName?.text = presenter.institution?.title
+        tvSubTitle?.text = presenter.institution?.subtitle
+        tvAddress?.text = presenter.institution?.address
+        tvPhone?.text = presenter.institution?.phone
+        tvMail?.text = presenter.institution?.mail
+        tvWorkingHours?.text = presenter.institution?.working_hours
+        tvResponsible?.text = getString(R.string.responsible).format(Locale.getDefault(), presenter.institution?.responsible)
+        tvAbout?.text = presenter.institution?.about?.first()
+        tvVolunteers?.text = presenter.institution?.volunteers
 
-        tvSubTitle?.text = institution?.subtitle
-
-        tvAddress?.text = institution?.address
-
-        tvPhone?.text = institution?.phone
         tvPhone?.setOnClickListener {
-            if (institution != null)
-                makeCall(institution.phone)
+            if (presenter.institution != null)
+                makeCall(presenter.institution!!.phone)
         }
 
-        tvMail?.text = institution?.mail
         tvMail?.setOnClickListener {
-            if (institution != null)
-                email(institution.mail, institution.title)
+            if (presenter.institution != null)
+                email(presenter.institution!!.mail, presenter.institution!!.title)
         }
 
-        tvWorkingHours?.text = institution?.working_hours
-
-        tvResponsible?.text = getString(R.string.responsible).format(Locale.getDefault(), institution?.responsible)
-
-        tvAbout?.text = institution?.about?.first()
-
-        tvVolunteers?.text = institution?.volunteers
-
-        if (institution?.donations != null) {
-            rvDonations.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            rvDonations.adapter = DonationsAdapter(institution.donations)
-        }
+        rvDonations.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rvDonations.adapter = donationsAdapter
 
     }
 

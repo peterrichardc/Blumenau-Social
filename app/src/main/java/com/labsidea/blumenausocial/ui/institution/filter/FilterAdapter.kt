@@ -16,7 +16,7 @@ import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.models.ItemAdapter
 import kotlinx.android.synthetic.main.item_filter.view.*
 
-class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onClick: (id: Int) -> Unit): RecyclerView.Adapter<FilterAdapter.FilterAdapterViewHolder>() {
+class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onClick: (item: ItemAdapter) -> Unit): RecyclerView.Adapter<FilterAdapter.FilterAdapterViewHolder>() {
 
     inner class FilterAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -24,7 +24,6 @@ class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onCli
             if (item.selected == 1){ //in current filter.
                 itemView.container.setBackgroundColor(getColor(context, R.color.colorBlueSelected))
                 itemView.container.isSelected = true
-                onClick(item.id)
             }
 
             itemView.container.setOnClickListener {
@@ -33,11 +32,10 @@ class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onCli
                                                          getColor(context, R.color.colorBlueSelected)
                                                       else
                                                          getColor(context, android.R.color.white))
-                onClick(item.id)
+                onClick(item)
             }
 
             itemView.tvTitle.text = item.description
-
         }
     }
 

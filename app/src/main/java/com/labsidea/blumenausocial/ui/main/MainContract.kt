@@ -8,7 +8,6 @@ package com.labsidea.blumenausocial.ui.main
 
 import com.labsidea.blumenausocial.ui.base.BaseContract
 
-
 //Interface to be implemented by Main Activity.
 class MainContract {
 
@@ -21,6 +20,8 @@ class MainContract {
     }
 
     interface Presenter: BaseContract.Presenter<MainContract.View> {
+        //When the institutions menu is clicked.
+        fun onClickInstitutionsMenu()
         //When the about menu is clicked.
         fun onClickAboutMenu()
     }

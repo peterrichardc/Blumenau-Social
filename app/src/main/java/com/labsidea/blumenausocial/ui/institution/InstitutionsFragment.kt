@@ -6,7 +6,6 @@
 
 package com.labsidea.blumenausocial.ui.institution
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
@@ -19,32 +18,25 @@ import android.view.ViewGroup
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerFragmentComponent
 import com.labsidea.blumenausocial.di.module.FragmentModule
-import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.fragment_institutions.*
 import javax.inject.Inject
 import android.view.WindowManager
-import com.labsidea.blumenausocial.models.ItemsSelected
 import com.labsidea.blumenausocial.ui.institution.detail.InstitutionDetailActivity
 import com.labsidea.blumenausocial.ui.institution.filter.InstitutionFilterActivity
+import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 
 
-class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAdapter.InstitutionAdapterEvents{
+class InstitutionsFragment: Fragment(), InstitutionsContract.View{
 
-
-    @Inject lateinit var presenter: InstitutionContract.Presenter
-
-    private lateinit var adapter: InstitutionAdapter
-    private var actuallyFilters: List<ItemsSelected> = mutableListOf()
+    @Inject lateinit var presenter: InstitutionsContract.Presenter
 
     companion object {
         const val TAG: String = "InstitutionsFragment"
     }
 
-    fun newInstance(): InstitutionsFragment {
-        return InstitutionsFragment()
-    }
+    fun newInstance() = InstitutionsFragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.fragment_institutions, container, false)
 
@@ -71,31 +63,6 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
         presenter.unsubscribe()
     }
 
-    override fun showProgress(show: Boolean) {
-        progressBar.visibility = if (show) View.VISIBLE else View.GONE
-    }
-
-    override fun showErrorMessage(error: String) {
-        Log.e("Error", error)
-        showProgress(false)
-    }
-
-    override fun loadDataSuccess(list: List<Organization>) {
-        val newHeight = main_container.height - (btnFilter.height + 10)
-        val behavior = BottomSheetBehavior.from(rvInstitutions)
-    //    behavior.setPeekHeight(newHeight)
-//        behavior.isHideable = false
-//        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
-
-        rvInstitutions!!.layoutManager = LinearLayoutManager(context)
-        this.adapter = InstitutionAdapter(context!!, list.toMutableList(), this)
-        rvInstitutions!!.adapter = this.adapter
-    }
-
-    override fun onClickItem(institution: Organization) {
-        startActivity<InstitutionDetailActivity>("institution_id_selected" to institution.id)
-
-    }
 
     private fun injectDependency() {
         val listComponent = DaggerFragmentComponent.builder()
@@ -106,11 +73,14 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
     }
 
     private fun initView() {
-        presenter.loadAdditionalData(context!!)
-
-        btnFilter.setOnClickListener{
-            startActivityForResult<InstitutionFilterActivity>(1, "currentFilters" to this.actuallyFilters)
+        presenter.loadAdditionalData(context!!) { institution ->
+            if (institution != null) {
+                startActivity<InstitutionDetailActivity>("institution_id_selected" to institution.id)
+                activity?.overridePendingTransition(R.anim.slide_bottom_to_top, R.anim.fade_out_long)
+            }
         }
+
+        btnFilter.setOnClickListener{ startActivityForResult<InstitutionFilterActivity>(1, "currentFilters" to presenter.filters()) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -118,19 +88,27 @@ class InstitutionsFragment: Fragment(), InstitutionContract.View, InstitutionAda
 
         if (requestCode == 1){
             if (data != null && data.hasExtra("items_filter")){
-                this.actuallyFilters = data.getParcelableArrayListExtra("items_filter")
-
-                changeAdapter(this.presenter.filterOrganizations(this.actuallyFilters, this.adapter.list))
+                this.presenter.filterOrganizations(data.getParcelableArrayListExtra("items_filter"))
             }
         }
     }
 
-    private fun changeAdapter(newListToAdapter: List<Organization>){
-        this.adapter.list = newListToAdapter
-        this.adapter.notifyDataSetChanged()
+    override fun showProgress(show: Boolean) {
+        progressBar.visibility = if (show) View.VISIBLE else View.GONE
     }
 
+    override fun showErrorMessage(error: String) {
+        Log.e("Error", error)
+        showProgress(false)
+        alert(error, getString(R.string.error_loading))
+    }
 
+    override fun loadDataSuccess(adapter: InstitutionsAdapter) {
+        //TODO
+        val newHeight = main_container.height - (btnFilter.height + 10)
+        val behavior = BottomSheetBehavior.from(rvInstitutions)
 
-
+        rvInstitutions?.layoutManager = LinearLayoutManager(context)
+        rvInstitutions?.adapter = adapter
+    }
 }

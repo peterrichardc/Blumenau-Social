@@ -9,38 +9,35 @@ package com.labsidea.blumenausocial.ui.institution
 import android.content.Context
 import com.labsidea.blumenausocial.api.APIServiceInterface
 import com.labsidea.blumenausocial.models.*
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
-import io.realm.RealmResults
-import org.reactivestreams.Subscriber
 
-class InstitutionPresenter : InstitutionContract.Presenter {
+class InstitutionsPresenter : InstitutionsContract.Presenter {
 
     private val subscriptions = CompositeDisposable()
     private val api: APIServiceInterface = APIServiceInterface.create()
+    private lateinit var view: InstitutionsContract.View
 
-    private lateinit var view: InstitutionContract.View
+    private var allOrganization: List<Organization?> = mutableListOf()
 
-    var allOrganization: List<Organization> = mutableListOf()
+    private var adapter: InstitutionsAdapter? = null
+    private var onClickItem: (organization: Organization?) -> Unit = {}
+    private var currentFilters: List<ItemsSelected> = mutableListOf()
 
-    override fun subscribe() {
-
-    }
+    override fun subscribe() {}
 
     override fun unsubscribe() {
         subscriptions.clear()
     }
 
-    override fun attach(view: InstitutionContract.View) {
+    override fun attach(view: InstitutionsContract.View) {
         this.view = view
     }
 
-
-    override fun loadAdditionalData(context: Context) {
+    override fun loadAdditionalData(context: Context, onClickItem: (institution: Organization?) -> Unit) {
         val realm = Realm.getDefaultInstance()
 
         val subscribe = api.getInstitutionsAdditionalInformationList()
@@ -56,22 +53,22 @@ class InstitutionPresenter : InstitutionContract.Presenter {
                                 realm.commitTransaction()
                                 t
                             }
-                            .subscribe()
-
+                            .subscribe({}, { this.onError(it.message) })
 
                     t
                 }
                 .subscribe({
+                    this.onClickItem = onClickItem
                     loadData()
-
-
-                }, { error ->
-                    view showProgress false
-
-                    view showErrorMessage error.localizedMessage
-                })
+                }, { this.onError(it.message) })
 
         subscriptions.add(subscribe)
+    }
+
+    private fun onError(message: String?){
+        view showProgress false
+        if (message != null)
+            view showErrorMessage message
     }
 
     override fun loadData() {
@@ -82,46 +79,48 @@ class InstitutionPresenter : InstitutionContract.Presenter {
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .map { t -> // Save into database.
-                    if (t.institutions!!.isNotEmpty()) {
+                    if (t.institutions.isNotEmpty()) {
                         realm.beginTransaction()
                         realm.insertOrUpdate(t.institutions.toMutableList())
                         realm.commitTransaction()
                     }
-
                     t
                 }
-                .subscribe({ list: OrganizationList? ->
+                .subscribe({
                     view showProgress false
-                    allOrganization = list!!.institutions!!
-                    view loadDataSuccess list.institutions!!
 
-                }, { error ->
-                    view showProgress false
-                    view showErrorMessage error.localizedMessage
-                })
+                    if (it != null) {
+                        allOrganization = it.institutions
+                        adapter = InstitutionsAdapter(it.institutions, this.onClickItem)
+                        view loadDataSuccess adapter!!
+                    }
+
+                }, { this.onError(it.message)})
 
         subscriptions.add(subscribe)
     }
 
-    override fun filterOrganizations(filters: List<ItemsSelected>, listToBeFiltered: List<Organization>): List<Organization>{
-        if (filters.isEmpty())
-            return allOrganization
+    /**
+     * Filter the list with organization that fits with selected screen filters.
+     */
+    override fun filterOrganizations(filters: List<ItemsSelected>){
+        if (filters.isNotEmpty()) {
+            var matchFilter: Boolean
+            val listFiltered = allOrganization.filter { organization ->
+                matchFilter = false
 
-        var matchFilter: Boolean
-        val list = listToBeFiltered.filter { organization ->
-            matchFilter = false
+                //Check if filter match with organization.
+                val filterNeighborhood = filters.filter { it.type == FiltersType.NEIGHBORHOODS }.filter { it.id == organization?.neighborhood }
+                matchFilter = filterNeighborhood.isNotEmpty()
 
-            //Check if filter match with organization.
-            val filterNeighborhood = filters.filter { it.type == FiltersType.NEIGHBORHOODS}.filter { it.id == organization.neighborhood }
-            matchFilter = filterNeighborhood.isNotEmpty()
+                matchFilter
+            }
 
-
-            matchFilter
-
+            this.currentFilters = filters
+            this.adapter?.list = listFiltered
+            this.adapter?.notifyDataSetChanged()
         }
-
-        return list
-
     }
 
+    override fun filters() = this.currentFilters
 }

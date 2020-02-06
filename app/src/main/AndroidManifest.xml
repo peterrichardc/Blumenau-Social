@@ -22,11 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.institution.detail.InstitutionDetailActivity"
-            android:theme="@style/Theme.Transparent" />
+        <activity android:name=".ui.institution.detail.InstitutionDetailActivity" />
 
-        <activity android:name=".ui.institution.filter.InstitutionFilterActivity"/>
+        <activity android:name=".ui.institution.filter.InstitutionFilterActivity" />
 
     </application>
 

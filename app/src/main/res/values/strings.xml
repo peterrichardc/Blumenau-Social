@@ -9,4 +9,24 @@
     <string name="about">Sobre</string>
     <string name="filter_institutions_or_donations">Filtrar instituições ou doacões..</string>
     <string name="working_hours">Horário de funcionamento</string>
+    <string name="error_loading">Atenção</string>
+
+    <!-- About strings-->
+    <string name="ourVision_title">Nossa Visão</string>
+    <string name="outVision_description">Ser referência na busca de informações por voluntariado para a comunidade de Blumenau.</string>
+    <string name="ourMission_title">Nossa Missão</string>
+    <string name="ourMission_description">Fomentar o terceiro setor da cidade utilizar a tecnologia como principal ferramenta de divulgação dos trabalhos e necessidades das instituições locais.</string>
+    <string name="ourValue_title">Nossos Valores</string>
+    <string name="whoMakeTheBlumenauSocial_title">Quem faz o Blumemau Social</string>
+    <string name="whoMakeTheBlumenauSocial_description">O Blumenau Social é desenvolvido por pessoas apaixonadas pelo voluntariado e que desejam ajudar as ONGs na cidade de Blumenau. Lançado em março de 2014, o projeto já ajudou dezenas de instituições na cidade a receberem doações, captar voluntários e assim melhorarem o seu impacto social.</string>
+    <string name="whoMakeTheBlumenauSocial_description_2">Idealizado pelo Rotaract Club de Blumenau, que atua há mais de 40 anos na cidade, reunindo pessoas entre 18 e 30 anos, com intenção de desenvolver e executar serviços e projetos em prol da comunidade.</string>
+    <string name="speakWithUs">Fale Conosco</string>
+    <string name="send_mail">Enviar e-mail</string>
+    <string name="social_medias">Redes Sociais</string>
+    <string name="Developers">Desenvolvedores</string>
+    <string name="author_peter">Peter Richard Carlim</string>
+    <string name="illustrator_thiago">Thiago Bennertz</string>
+    <string name="illustrator">Ilustrador</string>
+    <string name="programmer">Programador</string>
+    <string name="contact_about_blumenau_social">"Contato sobre o Blumenau Social"</string>
 </resources>
