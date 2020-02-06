@@ -29,7 +29,7 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 
 [![Kotlin](https://img.shields.io/static/v1.svg?label=Kotlin&message=1.2&color=red)](https://github.com/JetBrains/kotlin)
 
-[![ViewPager Indicator](https://img.shields.io/static/v1.svg?label=ViewPager&Indicator&message=2.1.4&color=red)](https://github.com/ongakuer/CircleIndicator)
+[![CircleIndicator](https://img.shields.io/static/v1.svg?label=CircleIndicator&message=2.1.4&color=red)](https://github.com/ongakuer/CircleIndicator)
 
 # Architecture
 
