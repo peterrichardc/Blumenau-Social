@@ -39,19 +39,9 @@ class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onCli
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FilterAdapterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_filter, parent, false))
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterAdapterViewHolder {
-        val inflate: LayoutInflater = LayoutInflater.from(parent.context);
-        val view: View = inflate.inflate(R.layout.item_filter, parent, false)
-
-        return FilterAdapterViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: FilterAdapterViewHolder, position: Int) {
-        holder.bind(list[position])
-
-    }
-
+    override fun onBindViewHolder(holder: FilterAdapterViewHolder, position: Int) = holder.bind(list[position])
 
     override fun getItemCount() = list.size
 }

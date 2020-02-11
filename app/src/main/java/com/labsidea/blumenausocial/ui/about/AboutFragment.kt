@@ -23,7 +23,6 @@ class AboutFragment: Fragment(){
 
         vpMain.adapter = AboutPagerAdapter(childFragmentManager)
         indicator.setViewPager(vpMain)
-
     }
 
 }

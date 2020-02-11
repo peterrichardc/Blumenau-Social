@@ -3,8 +3,6 @@ package com.labsidea.blumenausocial.models
 import android.os.Parcel
 import android.os.Parcelable
 
-enum class FiltersType { NEIGHBORHOODS, CAUSES, DONATIONS, VOLUNTEERS}
-
 class ItemAdapter (var id: Int, var description: String?, var selected: Int ): Parcelable {
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString(), parcel.readInt())
@@ -24,6 +22,8 @@ class ItemAdapter (var id: Int, var description: String?, var selected: Int ): P
         override fun newArray(size: Int): Array<ItemAdapter?> = arrayOfNulls(size)
     }
 }
+
+enum class FiltersType { NEIGHBORHOODS, CAUSES, DONATIONS, VOLUNTEERS}
 
 class InstitutionsFilterHeader(val resourceId: Int, var title: String, var subtitle: String, var type: FiltersType)
 
