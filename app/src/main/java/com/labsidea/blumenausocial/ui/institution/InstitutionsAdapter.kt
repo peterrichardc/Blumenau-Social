@@ -23,9 +23,7 @@ class InstitutionsAdapter(var list: List<Organization?>,
             itemView.tvPhone.text = institution?.phone
             itemView.tvAddress.text = institution?.address
 
-            itemView.main_container.setOnClickListener {
-                onClickItem(institution)
-            }
+            itemView.main_container.setOnClickListener { onClickItem(institution) }
         }
     }
 

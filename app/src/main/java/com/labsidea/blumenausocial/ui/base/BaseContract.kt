@@ -13,9 +13,6 @@ interface BaseContract{
         fun subscribe()
         fun unsubscribe()
         infix fun attach(view: T)
-
-        //Load data to UI.
-        fun loadData()
     }
 
     interface View

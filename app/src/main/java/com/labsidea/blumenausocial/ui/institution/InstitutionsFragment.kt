@@ -30,11 +30,11 @@ import org.jetbrains.anko.support.v4.startActivityForResult
 
 class InstitutionsFragment: Fragment(), InstitutionsContract.View{
 
-    @Inject lateinit var presenter: InstitutionsContract.Presenter
-
     companion object {
         const val TAG: String = "InstitutionsFragment"
     }
+
+    @Inject lateinit var presenter: InstitutionsContract.Presenter
 
     fun newInstance() = InstitutionsFragment()
 
@@ -44,7 +44,6 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
         super.onCreate(savedInstanceState)
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
         injectDependency()
     }
 
@@ -52,7 +51,6 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
         super.onViewCreated(view, savedInstanceState)
 
         presenter attach this
-
         presenter.subscribe()
         initView()
     }
@@ -62,7 +60,6 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
 
         presenter.unsubscribe()
     }
-
 
     private fun injectDependency() {
         val listComponent = DaggerFragmentComponent.builder()
@@ -98,7 +95,6 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
     }
 
     override fun showErrorMessage(error: String) {
-        Log.e("Error", error)
         showProgress(false)
         alert(error, getString(R.string.error_loading))
     }

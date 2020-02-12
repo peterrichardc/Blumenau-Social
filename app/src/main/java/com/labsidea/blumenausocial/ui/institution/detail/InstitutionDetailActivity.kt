@@ -45,7 +45,7 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
     }
 
     override fun showProgress(show: Boolean) {
-        //TODO ADICIONAR PROGRESS..
+        //TODO Add progress bar.
 
     }
 

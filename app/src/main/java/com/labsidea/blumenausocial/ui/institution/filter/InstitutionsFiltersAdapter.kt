@@ -17,13 +17,8 @@ import com.labsidea.blumenausocial.models.ItemsSelected
 class InstitutionsFiltersAdapter(private val context: Context,
                                  private val listHeaders: List<InstitutionsFilterHeader>,
                                  private val listItems: HashMap<InstitutionsFilterHeader, List<ItemAdapter>>,
-                                 val listFilters: MutableList<ItemsSelected>,
-                                 private val events: InstitutionsFiltersAdapterEvents?): BaseExpandableListAdapter(){
-
-
-    interface InstitutionsFiltersAdapterEvents{
-        fun onClickExpandOrCollapse(groupPosition: Int)
-    }
+                                 private val listFilters: MutableList<ItemsSelected>,
+                                 private val onClickExpandOrCollapse: (Int) -> Unit?): BaseExpandableListAdapter(){
 
     override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View {
         val inflate = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -32,16 +27,14 @@ class InstitutionsFiltersAdapter(private val context: Context,
         val title = view.findViewById(R.id.tvTitle) as TextView
         val ivExpand = view.findViewById(R.id.ivExpand) as ImageView
         val subTitle = view.findViewById(R.id.tvSubTitle) as TextView
+        val ivLogo = view.findViewById(R.id.ivLogo) as ImageView
 
         title.text = listHeaders[groupPosition].title
         subTitle.text = listHeaders[groupPosition].subtitle
 
-        val ivLogo = view.findViewById(R.id.ivLogo) as ImageView
         ivLogo.setImageResource(listHeaders[groupPosition].resourceId)
-
         ivExpand.setOnClickListener {
-            events?.onClickExpandOrCollapse(groupPosition)
-
+            onClickExpandOrCollapse(groupPosition)
             this@InstitutionsFiltersAdapter.onGroupExpanded(groupPosition)
         }
 
@@ -51,7 +44,6 @@ class InstitutionsFiltersAdapter(private val context: Context,
     override fun getChildView(groupPosition: Int, childPosition: Int, isLastChild: Boolean, convertView: View?, parent: ViewGroup?): View {
         val inflate = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflate.inflate(R.layout.item_institutions_filters_adapter, null)
-
         val rvInstitutions = view.findViewById(R.id.rvInstitutions) as RecyclerView
 
         rvInstitutions.adapter = FilterAdapter(context, getChild(groupPosition, childPosition)!!) { item ->
@@ -68,6 +60,7 @@ class InstitutionsFiltersAdapter(private val context: Context,
             val position = getChild(groupPosition, childPosition)!!.indexOf(item)
             getChild(groupPosition, childPosition)!![position].selected = if (add) 1 else 0
         }
+
         rvInstitutions.layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
 
         return view
@@ -88,5 +81,4 @@ class InstitutionsFiltersAdapter(private val context: Context,
     override fun isChildSelectable(groupPosition: Int, childPosition: Int) = true
 
     override fun hasStableIds() = false
-
 }

@@ -25,6 +25,8 @@ interface InstitutionsContract{
     }
 
     interface Presenter: BaseContract.Presenter<View> {
+        //Load data to UI.
+        fun loadData()
 
         //Load additional data.
         fun loadAdditionalData(context: Context, onClickItem: (institution: Organization?) -> Unit)

@@ -16,6 +16,7 @@ import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.models.ItemAdapter
 import kotlinx.android.synthetic.main.item_filter.view.*
 
+//TODO add icons in item adapter
 class FilterAdapter(val context: Context, val list: List<ItemAdapter>, val onClick: (item: ItemAdapter) -> Unit): RecyclerView.Adapter<FilterAdapter.FilterAdapterViewHolder>() {
 
     inner class FilterAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

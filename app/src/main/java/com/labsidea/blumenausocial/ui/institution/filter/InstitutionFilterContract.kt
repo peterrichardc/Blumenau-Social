@@ -7,10 +7,7 @@
 
 package com.labsidea.blumenausocial.ui.institution.filter
 
-import com.labsidea.blumenausocial.models.Causes
-import com.labsidea.blumenausocial.models.Donations
-import com.labsidea.blumenausocial.models.Neighborhood
-import com.labsidea.blumenausocial.models.Volunteers
+import com.labsidea.blumenausocial.models.ItemsSelected
 import com.labsidea.blumenausocial.ui.base.BaseContract
 
 interface InstitutionFilterContract{
@@ -23,9 +20,12 @@ interface InstitutionFilterContract{
         infix fun showErrorMessage(error: String)
 
         //Show the data loaded in UI.
-        fun loadDataSuccess(neighborhoods: List<Neighborhood>, causes: List<Causes>, donations: List<Donations>, volunteers: List<Volunteers>)
-
+        infix fun loadDataSuccess(filtersAdapter: InstitutionsFiltersAdapter)
     }
 
-    interface Presenter : BaseContract.Presenter<View>
+    interface Presenter : BaseContract.Presenter<View>{
+        fun loadData(onClickExpandOrCollapse: (Int) -> Unit?)
+
+        fun filters(): List<ItemsSelected>
+    }
 }

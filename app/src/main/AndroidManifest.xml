@@ -26,6 +26,8 @@
 
         <activity android:name=".ui.institution.filter.InstitutionFilterActivity" />
 
+        <activity android:name=".ui.match.filter.MatchFiltersActivity"/>
+
     </application>
 
 </manifest>
