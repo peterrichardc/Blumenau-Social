@@ -6,19 +6,31 @@
 
 package com.labsidea.blumenausocial.ui.institution
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.models.Organization
 import kotlinx.android.synthetic.main.item_organization.view.*
 
-class InstitutionsAdapter(var list: List<Organization?>,
+class InstitutionsAdapter(var context: Context,
+                          var list: List<Organization?>,
                           private val onClickItem: (institution: Organization?) -> Unit): RecyclerView.Adapter<InstitutionsAdapter.InstitutionAdapterViewHolder>() {
 
     inner class InstitutionAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(institution: Organization?){
+
+            val imageLogo = context.resources.getIdentifier(institution?.logo,  "drawable", context.packageName)
+            Glide.with(context)
+                    .load(imageLogo)
+                    .centerCrop()
+                    .placeholder(R.drawable.anim_loader)
+                    .error(R.drawable.ic_cvv)
+                    .into(itemView.ivLogo)
+
             itemView.tvName.text = institution?.title
             itemView.tvPhone.text = institution?.phone
             itemView.tvAddress.text = institution?.address

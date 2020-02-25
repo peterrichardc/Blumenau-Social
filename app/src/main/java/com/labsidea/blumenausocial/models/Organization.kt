@@ -30,6 +30,6 @@ open class Organization : RealmObject() {
     var about: RealmList<String> = RealmList()
     var scope : String = ""
     var neighborhood: Int = 0
-
+    var logo: String = ""
 
 }

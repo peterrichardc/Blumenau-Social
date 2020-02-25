@@ -74,4 +74,8 @@ dependencies {
     //View Pager Indicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
 
+    //Glide - Version 4.9.0 because 4.10 + uses androidX
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
 }

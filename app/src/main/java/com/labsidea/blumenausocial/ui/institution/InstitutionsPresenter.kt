@@ -26,12 +26,11 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
     private var adapter: InstitutionsAdapter? = null
     private var onClickItem: (organization: Organization?) -> Unit = {}
     private var currentFilters: List<ItemsSelected> = mutableListOf()
+    private lateinit var context: Context
 
     override fun subscribe() {}
 
-    override fun unsubscribe() {
-        subscriptions.clear()
-    }
+    override fun unsubscribe() = subscriptions.clear()
 
     override fun attach(view: InstitutionsContract.View) {
         this.view = view
@@ -40,6 +39,7 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
     override fun loadAdditionalData(context: Context, onClickItem: (institution: Organization?) -> Unit) {
         val realm = Realm.getDefaultInstance()
 
+        //TODO CACHE -> When haven't internet connection should show institutions saved in internal database.
         val subscribe = api.getInstitutionsAdditionalInformationList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,6 +59,7 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
                 }
                 .subscribe({
                     this.onClickItem = onClickItem
+                    this.context = context
                     loadData()
                 }, { this.onError(it.message) })
 
@@ -91,7 +92,7 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
 
                     if (it != null) {
                         allOrganization = it.institutions
-                        adapter = InstitutionsAdapter(it.institutions, this.onClickItem)
+                        adapter = InstitutionsAdapter(this.context, it.institutions, this.onClickItem)
                         view loadDataSuccess adapter!!
                     }
 
