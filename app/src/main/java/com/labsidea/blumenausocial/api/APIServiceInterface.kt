@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers
 
 interface APIServiceInterface{
 
-    @GET("institution")
+    @GET("institution_android")
     fun getInstitutionsList(): Observable<OrganizationList>
 
     @GET("filter")
