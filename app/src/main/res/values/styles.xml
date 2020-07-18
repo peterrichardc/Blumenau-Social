@@ -11,4 +11,8 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="AppTheme.SplashScreen">
+        <item name="android:windowBackground">@drawable/layerlist_splash_screen</item>
+    </style>
+
 </resources>
