@@ -18,18 +18,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:gravity="center"
+        android:padding="30dp"
         android:textColor="@color/colorBlueDark"
         android:text="@string/whoMakeTheBlumenauSocial_description"
         android:textSize="15sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@color/colorBlueDark"
-        android:text="@string/whoMakeTheBlumenauSocial_description_2"
-        android:textSize="15sp" />
 
 
 

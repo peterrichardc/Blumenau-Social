@@ -6,16 +6,39 @@
     android:background="@color/colorWhiteLight"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGreenLight"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:padding="10sp"
+        android:textStyle="bold"
+        android:text="@string/select_the_regions_you_want_help"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvNeighborhoods"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
         tools:listitem="@layout/item_filter"
         android:elevation="10dp">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tvAlmostThere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGreenLight"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:padding="30sp"
+        android:textStyle="bold"
+        android:text="@string/next_almost_there"/>
 
 </LinearLayout>

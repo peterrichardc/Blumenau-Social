@@ -12,16 +12,26 @@ import com.labsidea.blumenausocial.ui.base.BaseContract
 class MainContract {
 
     interface View: BaseContract.View {
+        //Show the Institutions Fragment.
+        fun showInstitutionsFragment()
+
+        //Show the My Matchs Fragment.
+        fun showMyMatchs()
+
         //Show the About Fragment.
         fun showAboutFragment()
 
-        //Show the Institutions Fragment.
-        fun showInstitutionsFragment()
     }
 
     interface Presenter: BaseContract.Presenter<MainContract.View> {
+        fun init()
+
         //When the institutions menu is clicked.
         fun onClickInstitutionsMenu()
+
+        //When the My Matches menu is clicked.
+        fun onClickMyMatchesMenu()
+
         //When the about menu is clicked.
         fun onClickAboutMenu()
     }

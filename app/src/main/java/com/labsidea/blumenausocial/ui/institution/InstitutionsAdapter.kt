@@ -26,7 +26,7 @@ class InstitutionsAdapter(var context: Context,
             val imageLogo = context.resources.getIdentifier(institution?.logo,  "drawable", context.packageName)
             Glide.with(context)
                     .load(imageLogo)
-                    .centerCrop()
+                    .centerInside()
                     .placeholder(R.drawable.anim_loader)
                     .error(R.drawable.ic_cvv)
                     .into(itemView.ivLogo)

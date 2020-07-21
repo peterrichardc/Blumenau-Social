@@ -15,6 +15,7 @@ import io.reactivex.functions.Function4
 import io.realm.Realm
 import io.realm.RealmResults
 
+@Suppress("NON_EXHAUSTIVE_WHEN")
 class InstitutionFilterPresenter(val context: Context, var currentFilters: MutableList<ItemsSelected>?) : InstitutionFilterContract.Presenter {
     private val subscriptions = CompositeDisposable()
     private lateinit var view: InstitutionFilterContract.View
@@ -45,6 +46,7 @@ class InstitutionFilterPresenter(val context: Context, var currentFilters: Mutab
                 .subscribe({ model: OrganizationAdditionalInformationList? ->
                     view showProgress false
 
+                    this.onClickExpandOrCollapse = onClickExpandOrCollapse
                     view loadDataSuccess makeAdapterFilters(model)
                 }, { error ->
                     view showProgress false
@@ -58,25 +60,25 @@ class InstitutionFilterPresenter(val context: Context, var currentFilters: Mutab
 
     private fun createOrganizationAdditionalInformationList(neighborhoods: List<Neighborhood>, causes: List<Causes>, donations: List<Donations>, volunteers: List<Volunteers>) = OrganizationAdditionalInformationList(neighborhoods, causes, donations, volunteers)
 
-    private fun addFilter(filters: List<Any>?, iconR: Int, title: String, type: FiltersType){
-        listHeader.add(InstitutionsFilterHeader(iconR, title, "Filtre os tipos de voluntários que se encaixam na pesquisa", type))
+    private fun addFilter(filters: List<Any>?, iconR: Int, title: String, subTitle: String, type: FiltersType){
+        listHeader.add(InstitutionsFilterHeader(iconR, title, subTitle, type))
         val list = mutableListOf<ItemAdapter>()
         filters?.forEach {
             when(type){
-                FiltersType.NEIGHBORHOODS -> list.add(ItemAdapter((it as Neighborhood).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type)))
-                FiltersType.CAUSES        -> list.add(ItemAdapter((it as Causes      ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type)))
-                FiltersType.DONATIONS     -> list.add(ItemAdapter((it as Donations   ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type)))
-                FiltersType.VOLUNTEERS    -> list.add(ItemAdapter((it as Volunteers  ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type)))
+                FiltersType.NEIGHBORHOODS -> list.add(ItemAdapter((it as Neighborhood).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type), it.image))
+                FiltersType.CAUSES        -> list.add(ItemAdapter((it as Causes      ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type), it.image))
+                FiltersType.DONATIONS     -> list.add(ItemAdapter((it as Donations   ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type), it.image))
+                FiltersType.VOLUNTEERS    -> list.add(ItemAdapter((it as Volunteers  ).id, it.name, findRecordInCurrentFilter(currentFilters!!, it.id, type), it.image))
             }
         }
         listItem.put(listHeader.last(), list)
     }
 
     private fun makeAdapterFilters(model: OrganizationAdditionalInformationList?): InstitutionsFiltersAdapter{
-        addFilter(model?.neighborhoods, R.drawable.ic_neighboorhod, "Bairros de Blumenau", FiltersType.NEIGHBORHOODS)
-        addFilter(model?.causes       , R.drawable.ic_causes      , "Áreas de atuação"   , FiltersType.CAUSES)
-        addFilter(model?.donations    , R.drawable.ic_donations   , "Doações"            , FiltersType.DONATIONS)
-        addFilter(model?.volunteers   , R.drawable.ic_volunteers  , "Voluntários"        , FiltersType.VOLUNTEERS)
+        addFilter(model?.neighborhoods, R.drawable.ic_neighboorhod, "Bairros de Blumenau", "Filtre as regiões que se encaixam na sua rotina.", FiltersType.NEIGHBORHOODS)
+        addFilter(model?.causes       , R.drawable.ic_causes      , "Áreas de atuação"   , "As vezes um pequeno gesto pode fazer a diferença!", FiltersType.CAUSES)
+        addFilter(model?.donations    , R.drawable.ic_donations   , "Doações"            , "Partilha! Aprenda a dividir para multiplicar! Pequenas partilhas geram grandes felicidades.", FiltersType.DONATIONS)
+        addFilter(model?.volunteers   , R.drawable.ic_volunteers  , "Voluntários"        , "Solidariedade ao seu alcance, encontre tipos de voluntáriados que podem ser sua cara!", FiltersType.VOLUNTEERS)
 
         if (currentFilters == null)
             currentFilters = mutableListOf()

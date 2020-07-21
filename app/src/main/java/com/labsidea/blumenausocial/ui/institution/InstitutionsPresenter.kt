@@ -21,7 +21,7 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
     private val api: APIServiceInterface = APIServiceInterface.create()
     private lateinit var view: InstitutionsContract.View
 
-    private var allOrganization: List<Organization?> = mutableListOf()
+    private var allOrganization: MutableList<Organization?> = mutableListOf()
 
     private var adapter: InstitutionsAdapter? = null
     private var onClickItem: (organization: Organization?) -> Unit = {}
@@ -81,8 +81,18 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
 
                 .map { t -> // Save into database.
                     if (t.institutions.isNotEmpty()) {
+
+                        allOrganization.clear()
+                        t.institutions.forEach {item ->
+                            item?.institution?.selected_causes = item?.selected_causes
+                            item?.institution?.selected_days = item?.selected_days
+                            item?.institution?.selected_periods = item?.selected_periods
+
+                            allOrganization.add(item?.institution)
+                        }
+
                         realm.beginTransaction()
-                        realm.insertOrUpdate(t.institutions.toMutableList())
+                        realm.insertOrUpdate(allOrganization)
                         realm.commitTransaction()
                     }
                     t
@@ -91,8 +101,7 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
                     view showProgress false
 
                     if (it != null) {
-                        allOrganization = it.institutions
-                        adapter = InstitutionsAdapter(this.context, it.institutions, this.onClickItem)
+                        adapter = InstitutionsAdapter(this.context, allOrganization, this.onClickItem)
                         view loadDataSuccess adapter!!
                     }
 
@@ -111,16 +120,31 @@ class InstitutionsPresenter : InstitutionsContract.Presenter {
                 matchFilter = false
 
                 //Check if filter match with organization.
-                val filterNeighborhood = filters.filter { it.type == FiltersType.NEIGHBORHOODS }.filter { it.id == organization?.neighborhood }
-                matchFilter = filterNeighborhood.isNotEmpty()
+                var canShow = true
+
+                canShow = filters.filter { it.type == FiltersType.NEIGHBORHOODS }.any{ it.id == organization?.neighborhood }
+
+                if (!canShow)
+                    canShow = filters.filter { it.type == FiltersType.CAUSES }.any{ item -> organization?.causes!!.any { cause -> cause!!.toInt() == item.id} }
+
+                if (!canShow)
+                    canShow = filters.filter { it.type == FiltersType.DONATIONS }.any{ item -> organization?.donation_type!!.any { donation -> donation!!.toInt() == item.id} }
+
+                if (!canShow)
+                    canShow = filters.filter { it.type == FiltersType.VOLUNTEERS }.any{ item -> organization?.volunteer_type!!.any { volunteer -> volunteer!!.toInt() == item.id} }
+
+                matchFilter = canShow
 
                 matchFilter
             }
 
-            this.currentFilters = filters
             this.adapter?.list = listFiltered
-            this.adapter?.notifyDataSetChanged()
         }
+        else
+            this.adapter?.list = allOrganization
+
+        this.currentFilters = filters
+        this.adapter?.notifyDataSetChanged()
     }
 
     override fun filters() = this.currentFilters

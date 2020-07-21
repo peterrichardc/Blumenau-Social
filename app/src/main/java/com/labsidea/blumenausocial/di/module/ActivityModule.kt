@@ -13,6 +13,8 @@ import com.labsidea.blumenausocial.ui.institution.filter.InstitutionFilterContra
 import com.labsidea.blumenausocial.ui.institution.filter.InstitutionFilterPresenter
 import com.labsidea.blumenausocial.ui.main.MainContract
 import com.labsidea.blumenausocial.ui.main.MainPresenter
+import com.labsidea.blumenausocial.ui.match.filter.steps.StepsContract
+import com.labsidea.blumenausocial.ui.match.filter.steps.StepsPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -37,8 +39,13 @@ class ActivityModule(private var activity: Activity) {
 
     @Provides
     fun provideInstitutionFilterActivity(): InstitutionFilterContract.Presenter{
-        return InstitutionFilterPresenter()
+        return InstitutionFilterPresenter(activity.applicationContext, activity.intent.getParcelableArrayListExtra("currentFilters"))
     }
+
+    /*@Provides
+    fun provideMatchFiltersActivity(): StepsContract.Presenter{
+        return StepsPresenter()
+    }*/
 
 
 

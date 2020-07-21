@@ -59,7 +59,6 @@ class InstitutionDetailActivity : AppCompatActivity(), InstitutionDetailContract
         tvAddress?.text = presenter.institution?.address
         tvPhone?.text = presenter.institution?.phone
         tvMail?.text = presenter.institution?.mail
-        tvWorkingHours?.text = presenter.institution?.working_hours
         tvResponsible?.text = getString(R.string.responsible).format(Locale.getDefault(), presenter.institution?.responsible)
         tvAbout?.text = presenter.institution?.about?.first()
         tvVolunteers?.text = presenter.institution?.volunteers

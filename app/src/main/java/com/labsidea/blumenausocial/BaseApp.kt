@@ -23,6 +23,7 @@ class BaseApp: Application() {
     }
 
     fun setup() {
+        //TODO Remove .applicationModule()
         component = DaggerApplicationComponent.builder().applicationModule(ApplicationModule(this)).build()
         component.inject(this)
 

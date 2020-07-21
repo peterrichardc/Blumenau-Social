@@ -11,6 +11,8 @@ import org.jetbrains.anko.support.v4.email
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import kotlinx.android.synthetic.main.layout_developers.*
+import kotlinx.android.synthetic.main.layout_social_medias.*
 
 class AboutStep4Fragment: Fragment(){
 
@@ -19,20 +21,52 @@ class AboutStep4Fragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnSendMail.setOnClickListener { email( getString(R.string.mail_peter), getString(R.string.contact_about_blumenau_social)) }
+        btnSendMail.setOnClickListener {
+            val emails = "${getString(R.string.mail_bnu_social)};${getString(R.string.mail_peter)}"
+            email( emails, getString(R.string.contact_about_blumenau_social))
+        }
 
-        //ivLinkedinPeter.setOnClickListener { openLinkedin() }
+        btnFacebook.setOnClickListener { openFacebook() }
+
+        btnInstagram.setOnClickListener { openInstagram() }
+
+        ivLinkednPeter.setOnClickListener { openLinkedin() }
     }
 
     //TODO Get my ID in linkedn page.
-    fun openLinkedin() {
+    private fun openLinkedin() {
         val linkedId = getString(R.string.id_linkedn)
-        var intent = Intent(Intent.ACTION_VIEW, Uri.parse("linkedin://add/%@$linkedId"))
-        val packageManager = context?.packageManager
-        val list = packageManager?.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        if (list != null && list.isEmpty()) {
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse("www.linkedin.com/in/$linkedId"))
-        }
+
+        val intent =
+                try {
+                    activity?.packageManager?.getPackageInfo("com.linkedin.android", 0)
+                    Intent(Intent.ACTION_VIEW, Uri.parse("linkedin://$linkedId"))
+                } catch (e: Exception) {
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/$linkedId"))
+                }
+
+        startActivity(intent)
+    }
+
+    private fun openFacebook(){
+        val intent =
+                try {
+                    activity?.packageManager?.getPackageInfo("com.facebook.katana", 0)
+                    Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/426253597411506"))
+                } catch (e: Exception) {
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/BlumenauSocial"))
+                }
+        startActivity(intent)
+    }
+
+    private fun openInstagram(){
+        val intent =
+                try {
+                    activity?.packageManager?.getPackageInfo("com.instagram.android", 0)
+                    Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/blumenausocial"))
+                } catch (e: Exception) {
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/blumenausocial"))
+                }
         startActivity(intent)
     }
     

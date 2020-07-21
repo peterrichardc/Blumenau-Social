@@ -14,6 +14,7 @@ import com.labsidea.blumenausocial.di.component.DaggerActivityComponent
 import com.labsidea.blumenausocial.di.module.ActivityModule
 import com.labsidea.blumenausocial.ui.about.AboutFragment
 import com.labsidea.blumenausocial.ui.institution.InstitutionsFragment
+import com.labsidea.blumenausocial.ui.match.MyMatchesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_match -> {
-                //message.setText(R.string.title_dashboard)
+                presenter.onClickMyMatchesMenu()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_about -> {
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
 
         //show the first fragment.
-        presenter.loadData()
+        presenter.init()
 
     }
 
@@ -65,13 +66,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         activityComponent.inject(this)
     }
 
-    override fun showAboutFragment() {
-        supportFragmentManager.beginTransaction()
-                .disallowAddToBackStack()
-                .replace(R.id.frmMain, AboutFragment().newInstance(), AboutFragment.TAG)
-                .commit()
-    }
-
     override fun showInstitutionsFragment() {
         supportFragmentManager.beginTransaction()
                 .disallowAddToBackStack()
@@ -79,6 +73,21 @@ class MainActivity : AppCompatActivity(), MainContract.View {
                 .commit()
 
     }
+
+    override fun showMyMatchs() {
+        supportFragmentManager.beginTransaction()
+                .disallowAddToBackStack()
+                .replace(R.id.frmMain, MyMatchesFragment().newInstance(), MyMatchesFragment.TAG)
+                .commit()
+    }
+
+    override fun showAboutFragment() {
+        supportFragmentManager.beginTransaction()
+                .disallowAddToBackStack()
+                .replace(R.id.frmMain, AboutFragment().newInstance(), AboutFragment.TAG)
+                .commit()
+    }
+
 
 
 }

@@ -3,14 +3,15 @@ package com.labsidea.blumenausocial.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class ItemAdapter (var id: Int, var description: String?, var selected: Int ): Parcelable {
+class ItemAdapter (var id: Int, var description: String?, var selected: Int = 0, var icon: String? = ""): Parcelable {
 
-    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString(), parcel.readInt())
+    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString(), parcel.readInt(), parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(description)
         parcel.writeInt(selected)
+        parcel.writeString(icon)
     }
 
     override fun describeContents() = 0
@@ -23,7 +24,7 @@ class ItemAdapter (var id: Int, var description: String?, var selected: Int ): P
     }
 }
 
-enum class FiltersType { NEIGHBORHOODS, CAUSES, DONATIONS, VOLUNTEERS}
+enum class FiltersType { NEIGHBORHOODS, CAUSES, DONATIONS, VOLUNTEERS, DAYS_OF_WEEK, TIMES_OF_DAY}
 
 class InstitutionsFilterHeader(val resourceId: Int, var title: String, var subtitle: String, var type: FiltersType)
 
@@ -44,5 +45,4 @@ class ItemsSelected (val id: Int, var type: FiltersType): Parcelable{
 
         override fun newArray(size: Int): Array<ItemsSelected?> = arrayOfNulls(size)
     }
-
 }

@@ -10,6 +10,6 @@ import com.google.gson.annotations.SerializedName
 class OrganizationList{
 
     @SerializedName("institutions")
-    val institutions: List<Organization?> = mutableListOf()
+    val institutions: List<InstitutionDetail?> = mutableListOf()
 
 }

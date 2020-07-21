@@ -31,7 +31,7 @@
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/ivLinkedinPeter"
+                android:id="@+id/ivLinkednPeter"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_width="match_parent"

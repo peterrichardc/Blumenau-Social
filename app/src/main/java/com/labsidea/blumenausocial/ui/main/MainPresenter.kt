@@ -6,15 +6,14 @@
 
 package com.labsidea.blumenausocial.ui.main
 
-import io.reactivex.disposables.CompositeDisposable
-
 class MainPresenter: MainContract.Presenter {
+
     private lateinit var view: MainContract.View
 
     override fun subscribe() {}
     override fun unsubscribe() {}
 
-    override fun loadData() {
+    override fun init() {
         view.showInstitutionsFragment() // as default
     }
 
@@ -23,6 +22,8 @@ class MainPresenter: MainContract.Presenter {
     }
 
     override fun onClickInstitutionsMenu() = view.showInstitutionsFragment()
+
+    override fun onClickMyMatchesMenu() = view.showMyMatchs()
 
     override fun onClickAboutMenu() = view.showAboutFragment()
 }

@@ -13,9 +13,9 @@ import android.view.ViewGroup
 import com.labsidea.blumenausocial.R
 import kotlinx.android.synthetic.main.item_donation.view.*
 
-class DonationsAdapter(val list: List<String>): RecyclerView.Adapter<DonationsAdapter.DonationsAdapterViewHolder>() {
+class DonationsAdapter(val list: List<String?>): RecyclerView.Adapter<DonationsAdapter.DonationsAdapterViewHolder>() {
     inner class DonationsAdapterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(title: String){
+        fun bind(title: String?){
             itemView.btnVolunteers.text = title
         }
     }

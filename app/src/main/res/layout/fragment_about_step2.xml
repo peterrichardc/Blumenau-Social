@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:padding="20sp"
+            android:padding="15sp"
             android:text="@string/ourVision_title"
             android:textColor="@color/colorGreenLight"
             android:textSize="28sp"
@@ -25,7 +25,8 @@
             android:padding="10dp"
             android:text="@string/outVision_description"
             android:textColor="@color/colorBlueDark"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +44,8 @@
             android:padding="10dp"
             android:text="@string/ourMission_description"
             android:textColor="@color/colorBlueDark"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="match_parent"

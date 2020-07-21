@@ -10,19 +10,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.labsidea.blumenausocial.R
 import com.labsidea.blumenausocial.di.component.DaggerFragmentComponent
 import com.labsidea.blumenausocial.di.module.FragmentModule
 import kotlinx.android.synthetic.main.fragment_institutions.*
 import javax.inject.Inject
-import android.view.WindowManager
 import com.labsidea.blumenausocial.ui.institution.detail.InstitutionDetailActivity
 import com.labsidea.blumenausocial.ui.institution.filter.InstitutionFilterActivity
+import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
@@ -53,6 +51,8 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
         presenter attach this
         presenter.subscribe()
         initView()
+
+        tbFilter.setOnClickListener { startActivityForResult<InstitutionFilterActivity>(1, "currentFilters" to presenter.filters()) }
     }
 
     override fun onDestroyView() {
@@ -76,8 +76,6 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
                 activity?.overridePendingTransition(R.anim.slide_bottom_to_top, R.anim.fade_out_long)
             }
         }
-
-        btnFilter.setOnClickListener{ startActivityForResult<InstitutionFilterActivity>(1, "currentFilters" to presenter.filters()) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -90,21 +88,22 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
         }
     }
 
+
     override fun showProgress(show: Boolean) {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showErrorMessage(error: String) {
         showProgress(false)
-        alert(error, getString(R.string.error_loading))
+        alert(error, getString(R.string.error_loading)).show()
     }
 
     override fun loadDataSuccess(adapter: InstitutionsAdapter) {
-        //TODO
-        val newHeight = main_container.height - (btnFilter.height + 10)
-        val behavior = BottomSheetBehavior.from(rvInstitutions)
 
-        rvInstitutions?.layoutManager = LinearLayoutManager(context)
+        rvInstitutions.visibility = View.VISIBLE
         rvInstitutions?.adapter = adapter
+
+        if (rvInstitutions?.layoutManager == null)
+            rvInstitutions?.layoutManager = LinearLayoutManager(context)
     }
 }

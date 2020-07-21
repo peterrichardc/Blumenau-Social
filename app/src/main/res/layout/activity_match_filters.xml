@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="Ajudar é preciso"
+                android:text="@string/help_is_needed"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                 android:textColor="@android:color/white" />
 

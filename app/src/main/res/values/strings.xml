@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blumenau Social</string>
+    <string name="app_name">Bnu Social</string>
     <string name="title_institutions">Instituições</string>
     <string name="title_match">Match</string>
     <string name="title_about">Sobre</string>
@@ -19,7 +19,6 @@
     <string name="ourValue_title">Nossos Valores</string>
     <string name="whoMakeTheBlumenauSocial_title">Quem faz o Blumemau Social</string>
     <string name="whoMakeTheBlumenauSocial_description">O Blumenau Social é desenvolvido por pessoas apaixonadas pelo voluntariado e que desejam ajudar as ONGs na cidade de Blumenau. Lançado em março de 2014, o projeto já ajudou dezenas de instituições na cidade a receberem doações, captar voluntários e assim melhorarem o seu impacto social.</string>
-    <string name="whoMakeTheBlumenauSocial_description_2">Idealizado pelo Rotaract Club de Blumenau, que atua há mais de 40 anos na cidade, reunindo pessoas entre 18 e 30 anos, com intenção de desenvolver e executar serviços e projetos em prol da comunidade.</string>
     <string name="speakWithUs">Fale Conosco</string>
     <string name="send_mail">Enviar e-mail</string>
     <string name="social_medias">Redes Sociais</string>
@@ -29,4 +28,14 @@
     <string name="illustrator">Ilustrador</string>
     <string name="programmer">Programador</string>
     <string name="contact_about_blumenau_social">"Contato sobre o Blumenau Social"</string>
+    <string name="help_is_needed">Ajudar é preciso</string>
+    <string name="lets_go">Vamos lá!!</string>
+    <string name="next_steps_we_help_create_profile">Nas próximas telas vamos te ajudar a criar um perfil para indicar as instituições que mais tem a ver com você</string>
+    <string name="select_the_regions_you_want_help">Em quais regiões você gostaria de ajudar ?</string>
+    <string name="next_almost_there">Proximo.. Quase la ;)</string>
+    <string name="last_step">Ultimo passo :D</string>
+    <string name="select_periods_you_have_free">Selecione os periodos do dia que você tem disponibilidade</string>
+    <string name="select_days_free_in_week_you_have">Selecione todos os dias da semana que você tem disponibilidade</string>
+    <string name="find_ONGs">Encontrar ONGs</string>
+    <string name="we_need_of">Precisamos de...</string>
 </resources>

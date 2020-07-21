@@ -20,16 +20,20 @@ open class Organization : RealmObject() {
     var mail: String = ""
     var responsible: String = ""
     var working_hours: String = ""
-    var days: RealmList<Int> = RealmList()
-    var periods: RealmList<Int> = RealmList()
-    var causes: RealmList<Int> = RealmList()
-    var donation_type: RealmList<Int> = RealmList()
-    var volunteer_type: RealmList<Int> = RealmList()
-    var donations: RealmList<String> = RealmList()
+    var days: RealmList<Integer?> = RealmList()
+    var periods: RealmList<Integer?> = RealmList()
+    var causes: RealmList<Integer?> = RealmList()
+    var donation_type: RealmList<Integer?> = RealmList()
+    var volunteer_type: RealmList<Integer?> = RealmList()
+    var donations: RealmList<String?> = RealmList()
     var volunteers: String = ""
-    var about: RealmList<String> = RealmList()
+    var about: RealmList<String?> = RealmList()
     var scope : String = ""
     var neighborhood: Int = 0
     var logo: String = ""
+
+    var selected_causes: String? = ""
+    var selected_days: String? = ""
+    var selected_periods: String? = ""
 
 }

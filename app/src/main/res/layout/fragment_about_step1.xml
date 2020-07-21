@@ -11,7 +11,7 @@
         android:textColor="@color/colorGreenLight"
         android:gravity="center_horizontal"
         android:textSize="28sp"
-        android:padding="30sp"
+        android:padding="15sp"
         android:textStyle="bold"
         android:text="@string/about"/>
 
@@ -19,6 +19,7 @@
         android:id="@+id/tvVolunteers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="10dp"
         android:textColor="@color/colorBlueDark"
         android:text="O Blumenau Social é uma organização sem fins lucrativos com foco no desenvolvimento do terceiro setor de nossa cidade. Nosso aplicativo une informações de associações e entidade sem fins lucrativos, desvinculadas da administração pública, que presetem algum tipo de auxilio efetivo à população blumenauense."
@@ -28,6 +29,7 @@
         android:id="@+id/tvVolunteerssss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="10dp"
         android:textColor="@color/colorBlueDark"
         android:text="Através do Blumenau Social, a população pode buscar formas de contribuir para o desenvolvimento das organizações e projetos, sendo através de doações, ações especificas, voluntariando-se às causas, entre outras formas de ajuda."
@@ -46,6 +48,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginBottom="15dp"
         android:src="@drawable/logo_app"/>
 
 

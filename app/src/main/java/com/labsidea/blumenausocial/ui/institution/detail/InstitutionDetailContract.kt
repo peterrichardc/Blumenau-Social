@@ -24,5 +24,7 @@ interface InstitutionDetailContract{
 
     interface Presenter: BaseContract.Presenter<View>{
         var institution: Organization?
+
+        fun loadData()
     }
 }

@@ -34,8 +34,8 @@ class InstitutionFilterActivity: AppCompatActivity(), InstitutionFilterContract.
         presenter attach this
         presenter.loadData(::onClickExpandOrCollapse)
 
-        btnClose.setOnClickListener { finishActivity(arrayListOf()) }
-        btnFilter.setOnClickListener { finishActivity(ArrayList(presenter.filters())) }
+        btnClose?.setOnClickListener { finishActivity(arrayListOf()) }
+        btnFilter?.setOnClickListener { finishActivity(ArrayList(presenter.filters())) }
     }
 
     private fun injectDependency(){
@@ -57,11 +57,12 @@ class InstitutionFilterActivity: AppCompatActivity(), InstitutionFilterContract.
     }
 
     override fun showErrorMessage(error: String){
-        showProgress(false)
-        alert(error, getString(R.string.error_loading))
+        alert(error, getString(R.string.error_loading)).show()
     }
 
-    override fun loadDataSuccess(filtersAdapter: InstitutionsFiltersAdapter) = expdFilters.setAdapter(filtersAdapter)
+    override fun loadDataSuccess(filtersAdapter: InstitutionsFiltersAdapter){
+        expdFilters?.setAdapter(filtersAdapter)
+    }
 
     private fun onClickExpandOrCollapse(groupPosition: Int) {
         if (expdFilters.isGroupExpanded(groupPosition))
