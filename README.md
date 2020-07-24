@@ -41,7 +41,7 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 
 # Application Functions
 
-#### #1 - See all the Social Organizations easily and fastly applying filters.
+#### #1 - See all the Social institutions easily and fastly applying filters.
 
 ![Alt Text](app_usage_1.gif)
 ```
