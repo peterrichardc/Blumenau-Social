@@ -41,14 +41,9 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 
 # Application Functions
 
-#### #1 - See all the Social Organizations easily and fastly.
-```gradle
-allprojects {
-    repositories {
-	...
-	maven { url "https://jitpack.io" }
-    }
-}
+#### #1 - See all the Social Organizations easily and fastly applying filters.
+
+![Alt Text](app_usage_1.gif)
 ```
 <a href="mailto:peter.richardcarlim.com" target="_blank" >
   <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x.png" alt="E-mail" witdh="44" height="44" hspace="10">
