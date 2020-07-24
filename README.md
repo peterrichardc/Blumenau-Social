@@ -14,6 +14,14 @@ Blumenau Social is a non-profit organization focused on developing the third sec
 Through Blumenau Social, the population can seek ways to contribute to the development of organizations and projects, through donations, specific actions, volunteering to the causes, among other forms of help.
 </br> 
 </br> 
+
+# Application Functions
+
+#### #1 - See all the Social institutions easily and fastly applying filters.
+
+![Alt Text](app_usage_1.gif)
+
+
 # Blumenau Social use the following technologies to work:
 
 <!-- Badges -->
@@ -38,12 +46,6 @@ Through Blumenau Social, the population can seek ways to contribute to the devel
 </br> 
 </br> 
 </br> 
-
-# Application Functions
-
-#### #1 - See all the Social institutions easily and fastly applying filters.
-
-![Alt Text](app_usage_1.gif)
 
 <a href="mailto:peter.richardcarlim.com" target="_blank" >
   <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x.png" alt="E-mail" witdh="44" height="44" hspace="10">
