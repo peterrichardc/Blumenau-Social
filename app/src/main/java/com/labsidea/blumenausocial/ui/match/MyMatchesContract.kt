@@ -16,6 +16,8 @@ interface MyMatchesContract{
         //Show the data loaded in UI.
         infix fun onMatchReady(adapter: MyMatchesPagerAdapter)
 
+        fun onNeedMakeMatch()
+
         infix fun onClickInstitution(id: Int)
     }
 

@@ -99,11 +99,11 @@ class InstitutionsFragment: Fragment(), InstitutionsContract.View{
     }
 
     override fun loadDataSuccess(adapter: InstitutionsAdapter) {
-
-        rvInstitutions.visibility = View.VISIBLE
         rvInstitutions?.adapter = adapter
 
         if (rvInstitutions?.layoutManager == null)
             rvInstitutions?.layoutManager = LinearLayoutManager(context)
+
+        rvInstitutions?.visibility = View.VISIBLE
     }
 }

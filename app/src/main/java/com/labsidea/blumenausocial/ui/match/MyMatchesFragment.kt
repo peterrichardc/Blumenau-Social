@@ -46,6 +46,8 @@ class MyMatchesFragment: Fragment(), MyMatchesContract.View{
         if (vpInstitutions?.adapter == null)
             presenter.makeMatchInstitutions(context!!)
 
+        tvStartMatch.setOnClickListener { startActivity<MatchFiltersActivity>() }
+
         btnFilter.setOnClickListener { startActivity<MatchFiltersActivity>() }
 
     }
@@ -72,12 +74,22 @@ class MyMatchesFragment: Fragment(), MyMatchesContract.View{
     }
 
     override fun onMatchReady(adapter: MyMatchesPagerAdapter) {
+        if (contentBar?.visibility == View.GONE) {
+            contentBar?.visibility = View.VISIBLE
+            llBody?.visibility = View.VISIBLE
+            tvStartMatch?.visibility = View.GONE
+        }
+
         vpInstitutions?.adapter = adapter
         setDonationsAdapter(0)
 
         vpInstitutions?.onPageChangeListener { onPageSelected { setDonationsAdapter(it) } }
 
         indicator?.setViewPager(vpInstitutions)
+    }
+
+    override fun onNeedMakeMatch() {
+        tvStartMatch?.visibility = View.VISIBLE
     }
 
     private fun setDonationsAdapter(pageIndex: Int){
@@ -89,8 +101,10 @@ class MyMatchesFragment: Fragment(), MyMatchesContract.View{
         tvNeed?.visibility = View.VISIBLE
     }
 
-    override fun onClickInstitution(id: Int) {
+    override fun onClickInstitution(id: Int){
         startActivity<InstitutionDetailActivity>("institution_id_selected" to id)
         activity?.overridePendingTransition(R.anim.slide_bottom_to_top, R.anim.fade_out_long)
     }
+
+
 }

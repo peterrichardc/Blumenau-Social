@@ -8,9 +8,7 @@ import io.realm.Realm
 
 class MyMatchesPresenter: MyMatchesContract.Presenter {
 
-    private val subscriptions
-
-            = CompositeDisposable()
+    private val subscriptions = CompositeDisposable()
     private lateinit var view: MyMatchesContract.View
     private lateinit var institutions: MutableList<Organization>
 
@@ -40,44 +38,44 @@ class MyMatchesPresenter: MyMatchesContract.Presenter {
                     val filters = realm.copyFromRealm(filtersRealm)
 
                     //Neighborhoods Filters
-                    filters.
-                            filter { it.type == FiltersType.NEIGHBORHOODS.ordinal }
+                    filters.filter { it.type == FiltersType.NEIGHBORHOODS.ordinal }
                             .forEach { listIDNeighborhoodsSelected.add(it.id) }
 
                     //Causes Filters
-                    filters.
-                            filter { it.type == FiltersType.CAUSES.ordinal }
+                    filters.filter { it.type == FiltersType.CAUSES.ordinal }
                             .forEach { listCausesSelected.add(it.id.toString()) }
 
                     //Days Of Week Filters
-                    filters.
-                            filter { it.type == FiltersType.DAYS_OF_WEEK.ordinal }
+                    filters.filter { it.type == FiltersType.DAYS_OF_WEEK.ordinal }
                             .forEach { listDaysOfWeekSelected.add(it.id.toString()) }
 
                     //Times of Day Filters
-                    filters.
-                            filter { it.type == FiltersType.TIMES_OF_DAY.ordinal }
+                    filters.filter { it.type == FiltersType.TIMES_OF_DAY.ordinal }
                             .forEach { listTimesOfDaySelected.add(it.id.toString()) }
 
-                    //Preparing filters
-                    val realmQuery = realm.where(Organization::class.java)
-                    realmQuery
-                            .findAllAsync()
-                            .asFlowable()
-                            .filter { isLoaded -> isLoaded.isLoaded }
-                            .subscribe { institutionsTables ->
-                                val institutionsPoints = hashMapOf<Organization, Double>()
-                                institutionsTables.forEach {
-                                    val institution = realm.copyFromRealm(it)
-                                    institutionsPoints[institution] = getPointsInstitution(institution)
-                                }
+                    if (filters.isNotEmpty()) {
+                        //Preparing filters
+                        val realmQuery = realm.where(Organization::class.java)
+                        realmQuery
+                                .findAllAsync()
+                                .asFlowable()
+                                .filter { isLoaded -> isLoaded.isLoaded }
+                                .subscribe { institutionsTables ->
+                                    val institutionsPoints = hashMapOf<Organization, Double>()
+                                    institutionsTables.forEach {
+                                        val institution = realm.copyFromRealm(it)
+                                        institutionsPoints[institution] = getPointsInstitution(institution)
+                                    }
 
-                                //Sort Map by points
-                                val sortedInstitutionsByPoints = institutionsPoints.toList().sortedByDescending { (_, value) -> value}.toMap()
-                                institutions = sortedInstitutionsByPoints.keys.toMutableList()
-                                val adapter = MyMatchesPagerAdapter(context, institutions) { institutionID ->  view onClickInstitution institutionID}
-                                view onMatchReady adapter
-                            }
+                                    //Sort Map by points
+                                    val sortedInstitutionsByPoints = institutionsPoints.toList().sortedByDescending { (_, value) -> value }.toMap()
+                                    institutions = sortedInstitutionsByPoints.keys.toMutableList()
+                                    val adapter = MyMatchesPagerAdapter(context, institutions) { institutionID -> view onClickInstitution institutionID }
+                                    view onMatchReady adapter
+                                }
+                    }
+                    else
+                        view.onNeedMakeMatch()
                 }
         subscriptions.add(subscribe)
     }

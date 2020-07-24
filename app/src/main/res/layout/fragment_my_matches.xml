@@ -11,7 +11,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/contentBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -42,14 +43,14 @@
 
             <ImageButton
 
-                android:visibility="gone"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:layout_marginEnd="30dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
-                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:visibility="gone" />
 
 
         </android.support.v7.widget.Toolbar>
@@ -57,47 +58,73 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
+
+    <TextView
+        android:id="@+id/tvStartMatch"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@+id/contentBar"
-        app:ci_drawable="@drawable/shape_primary_color_ball_small"
-        app:ci_drawable_unselected="@drawable/shape_primary_color_alpha_ball_small" />
+        android:layout_height="wrap_content"
+        android:text="Toque aqui para descobrir as Instituições que mais se encaixam ao seu perfil."
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:elevation="40dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorGreenLight"
+        />
 
     <LinearLayout
+        android:id="@+id/llBody"
+        android:layout_below="@+id/contentBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/indicator"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vpInstitutions"
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"/>
+            android:layout_height="48dp"
+            app:ci_drawable="@drawable/shape_primary_color_ball_small"
+            app:ci_drawable_unselected="@drawable/shape_primary_color_alpha_ball_small" />
 
-        <TextView
-            android:id="@+id/tvNeed"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/we_need_of"
-            android:textStyle="bold"
-            android:visibility="gone"
-            android:textSize="18sp"
-            android:textColor="@color/colorGreenLight"
-            android:gravity="center"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/indicator"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvDonations"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:focusable="false"
-            tools:listitem="@layout/item_donation" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpInstitutions"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
 
+            <TextView
+                android:id="@+id/tvNeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/we_need_of"
+                android:textColor="@color/colorGreenLight"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvDonations"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:focusable="false"
+                tools:listitem="@layout/item_donation" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
