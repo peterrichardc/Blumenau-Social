@@ -30,19 +30,20 @@ class AboutStep4Fragment: Fragment(){
 
         btnInstagram.setOnClickListener { openInstagram() }
 
-        ivLinkednPeter.setOnClickListener { openLinkedin() }
+        ivLinkednPeter.setOnClickListener { openLinkedin(getString(R.string.id_linkedn)) }
+
+        ivLinkednThiago.setOnClickListener { openLinkedin(getString(R.string.id_linkedn2)) }
+
+
     }
 
-    //TODO Get my ID in linkedn page.
-    private fun openLinkedin() {
-        val linkedId = getString(R.string.id_linkedn)
-
+    private fun openLinkedin(linkedinid: String) {
         val intent =
                 try {
                     activity?.packageManager?.getPackageInfo("com.linkedin.android", 0)
-                    Intent(Intent.ACTION_VIEW, Uri.parse("linkedin://$linkedId"))
+                    Intent(Intent.ACTION_VIEW, Uri.parse("linkedin://$linkedinid"))
                 } catch (e: Exception) {
-                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/$linkedId"))
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/$linkedinid"))
                 }
 
         startActivity(intent)
