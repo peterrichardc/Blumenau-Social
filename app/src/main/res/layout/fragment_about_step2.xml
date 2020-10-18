@@ -15,7 +15,7 @@
             android:gravity="center_horizontal"
             android:padding="15sp"
             android:text="@string/ourVision_title"
-            android:textColor="@color/colorGreenLight"
+            android:textColor="@color/colorPinkTitle"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
             android:gravity="center_horizontal"
             android:padding="20sp"
             android:text="@string/ourMission_title"
-            android:textColor="@color/colorGreenLight"
+            android:textColor="@color/colorPinkTitle"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
             android:gravity="center_horizontal"
             android:padding="20sp"
             android:text="@string/ourValue_title"
-            android:textColor="@color/colorGreenLight"
+            android:textColor="@color/colorPinkTitle"
             android:textSize="28sp"
             android:textStyle="bold" />
 

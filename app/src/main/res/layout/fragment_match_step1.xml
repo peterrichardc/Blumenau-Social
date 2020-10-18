@@ -27,7 +27,7 @@
         android:id="@+id/tvLetsGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGreenLight"
+        android:textColor="@color/colorPinkTitle"
         android:gravity="center_horizontal"
         android:textSize="24sp"
         android:padding="30sp"

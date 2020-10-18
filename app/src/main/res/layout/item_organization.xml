@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/tvName"
                 android:text="Peter"
-                android:textColor="@color/colorGreenLight"
+                android:textColor="@color/colorPinkTitle"
                 android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"

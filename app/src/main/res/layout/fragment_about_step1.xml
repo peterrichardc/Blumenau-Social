@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGreenLight"
+        android:textColor="@color/colorPinkTitle"
         android:gravity="center_horizontal"
         android:textSize="28sp"
         android:padding="15sp"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGreenLight"
+        android:textColor="@color/colorPinkTitle"
         android:gravity="center_horizontal"
         android:textSize="22sp"
         android:padding="30sp"

@@ -70,7 +70,7 @@
         android:visibility="gone"
         android:gravity="center"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorGreenLight"
+        android:textColor="@color/colorPinkTitle"
         />
 
     <LinearLayout
@@ -111,7 +111,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="@string/we_need_of"
-                android:textColor="@color/colorGreenLight"
+                android:textColor="@color/colorPinkTitle"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
